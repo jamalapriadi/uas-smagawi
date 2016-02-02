@@ -35,4 +35,8 @@ class Siswa extends Authenticatable{
 	public function kelas(){
 		return $this->belongsTo('App\Models\Kelas','kd_kelas');
 	}
+
+	public function peserta(){
+		return $this->hasOne('App\Models\Peserta','nis');
+	}
 }

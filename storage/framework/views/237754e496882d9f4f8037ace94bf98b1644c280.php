@@ -3,6 +3,7 @@
 
 	<?php echo Form::model($guru,array('url'=>route('admin.guru.update',['guru'=>$guru->nip]),'method'=>'put')); ?>
 
+		<input type="hidden" value="<?php echo e($guru->soal->id); ?>" name="soal">
 		<div class="form-group <?php if($errors->has('nip')): ?> has-error <?php endif; ?>">
 			<label for="">NIP</label>
 			<input type="text" name="nip" value="<?php echo e($guru->nip); ?>" readonly="readonly" class="form-control">
@@ -29,13 +30,25 @@
 
 		</div>
 
-		<div class="form-group">
+		<div class="form-group <?php if($errors->has('jurusan')): ?> has-error <?php endif; ?>">
+			<label for="">Jurusan</label>
+			<select name="jurusan" id="jurusan" class="form-control">
+				<option value="">--Pilih jurusan--</option>
+				<?php foreach($jurusan as $jur): ?>
+					<option value="<?php echo e($jur->kode_jurusan); ?>" <?php if($guru->soal->kode_jurusan==$jur->kode_jurusan): ?> selected='selected' <?php endif; ?>><?php echo e($jur->nama_jurusan); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?php echo e($errors->first('jurusan')); ?>
+
+		</div>
+
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>
 				Simpan
 			</button>
 
-			<a href="<?php echo e(URL::to('admin/jurusan')); ?>" class="btn btn-default">
+			<a href="<?php echo e(URL::to('admin/guru')); ?>" class="btn btn-default">
 				Kembali
 			</a>
 		</div>

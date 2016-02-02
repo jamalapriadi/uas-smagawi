@@ -1,0 +1,4 @@
+Header Hijau : #51A8B1
+Header Kuning : #FFFBD6
+Center Abu2 : #E6E7E8
+Footer Hijau Muda : #5CC6D0

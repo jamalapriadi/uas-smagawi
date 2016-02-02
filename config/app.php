@@ -161,7 +161,8 @@ return [
         */
         'Maatwebsite\Excel\ExcelServiceProvider',
         'Collective\Html\HtmlServiceProvider',
-        'Laracasts\Flash\FlashServiceProvider'
+        'Laracasts\Flash\FlashServiceProvider',
+        Intervention\Image\ImageServiceProvider::class
 
 
     ],
@@ -213,7 +214,9 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
-        'Flash' => 'Laracasts\Flash\Flash'
+        'Flash' => 'Laracasts\Flash\Flash',
+
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

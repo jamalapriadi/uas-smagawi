@@ -18,47 +18,30 @@
 		</tr>
 	</table>
 
-	<a href="{{URL::to('admin/tambah-soal/'.$soal->id)}}" class="btn btn-primary">
-		<i class="glyphicon glyphicon-plus"></i>
-		Tambah Soal
-	</a>
-
 	<hr>
 
 	<div id="pesan"></div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>No.</th>
-				<th>Pertanyaan</th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php $no=0;?>
-			@foreach($detail as $row)
-				<?php $no++;?>
-				<tr>
-					<td>{{$no}}</td>
-					<td>{{$row->pertanyaan}}</td>
-					<td>
-						<a href="{{URL::to('admin/detail-soal/'.$row->id.'/edit')}}" class="btn btn-warning">
-							<i class="glyphicon glyphicon-edit"></i>
-							Edit
-						</a>
-					</td>
-					<td>
-						<a href="#" kode="{{$row->id}}" class="btn btn-danger hapus">
-							<i class="glyphicon glyphicon-trash"></i>
-							Hapus
-						</a>
-					</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
+	<table class="table" id="data">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Soal</th>
+						<th>Jawaban</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $no=0;?>
+					@foreach($detail as $row)
+						<?php $no++;?>
+						<tr>
+							<td>{{$no}}</td>
+							<td>{{Html::image('uploads/small/'.$row->gambar_kecil,'',array('class'=>'img-responsive'))}}</td>
+							<td>{{$row->kunci_jawaban}}</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

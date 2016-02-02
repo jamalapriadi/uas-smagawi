@@ -23,6 +23,7 @@
 				<th>NIP</th>
 				<th>Nama</th>
 				<th>Mata Pelajaran</th>
+				<th>Jurusan</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -36,6 +37,7 @@
 					<td>{{$row->nip}}</td>
 					<td>{{$row->nama}}</td>
 					<td>{{$row->mapel->nm_mapel}}</td>
+					<td>{{$row->soal->kode_jurusan}}</td>
 					<td>
 						<a href="{{URL::to('admin/guru/'.$row->nip.'/edit')}}" class="btn btn-warning">
 							<i class="glyphicon glyphicon-edit"></i>

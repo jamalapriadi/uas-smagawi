@@ -50,7 +50,7 @@
 					<td><?php echo e($no); ?></td>
 					<td><?php echo e($row->kd_kelas); ?></td>
 					<td><?php echo e($row->id_ruang); ?></td>
-					<td><?php echo e($row->pengawas); ?></td>
+					<td><?php echo e($row->getpengawas->nama); ?></td>
 					<td><?php echo e($row->status); ?></td>
 					<td>
 						<a href="<?php echo e(URL::to('admin/detail-jadwal/'.$row->id.'/edit')); ?>" class="btn btn-warning">

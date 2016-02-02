@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Guru;
 use App\Models\Mapel;
+use App\Models\Jurusan;
+use App\Models\Soal;
 use Redirect,Validator,Session,Hash;
 
 class GuruController extends Controller
@@ -34,8 +36,11 @@ class GuruController extends Controller
     public function create()
     {
         $mapel=Mapel::all();
+        $jurusan=Jurusan::all();
+
         return View('admin.guru.create')
-            ->with('mapel',$mapel);
+            ->with('mapel',$mapel)
+            ->with('jurusan',$jurusan);
     }
 
     /**
@@ -58,7 +63,15 @@ class GuruController extends Controller
             $guru->nama=$request->input('nama');
             $guru->password=Hash::make($request->input('password'));
             $guru->kd_mapel=$request->input('mapel');
-            $guru->save();
+            $simpan=$guru->save();
+
+            if($simpan){
+                $soal=new Soal;
+                $soal->kd_mapel=$request->input('mapel');
+                $soal->kode_jurusan=$request->input('jurusan');
+                $soal->author=$request->input('nip');
+                $soal->save();
+            }
 
             Session::flash('pesan',"Data Berhasil disimpan");
             return Redirect::to('admin/guru');
@@ -86,10 +99,12 @@ class GuruController extends Controller
     {
         $guru=Guru::find($id);
         $mapel=Mapel::all();
+        $jurusan=Jurusan::all();
 
         return View('admin.guru.edit')
             ->with('guru',$guru)
-            ->with('mapel',$mapel);
+            ->with('mapel',$mapel)
+            ->with('jurusan',$jurusan);
     }
 
     /**
@@ -111,7 +126,15 @@ class GuruController extends Controller
             $guru=Guru::find($id);
             $guru->nama=$request->input('nama');
             $guru->kd_mapel=$request->input('mapel');
-            $guru->save();
+            $update=$guru->save();
+
+            if($update){
+                $soal=Soal::find($request->input('soal'));
+                $soal->kd_mapel=$request->input('mapel');
+                $soal->kode_jurusan=$request->input('jurusan');
+                $soal->author=$request->input('nip');
+                $soal->save();
+            }
 
             Session::flash('pesan',"Data Berhasil diupdate");
             return Redirect::to('admin/guru');

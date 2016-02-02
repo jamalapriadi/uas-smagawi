@@ -4,6 +4,7 @@
 	<legend>Tambah Guru</legend>
 
 	{!! Form::model($guru,array('url'=>route('admin.guru.update',['guru'=>$guru->nip]),'method'=>'put'))!!}
+		<input type="hidden" value="{{$guru->soal->id}}" name="soal">
 		<div class="form-group @if($errors->has('nip')) has-error @endif">
 			<label for="">NIP</label>
 			<input type="text" name="nip" value="{{$guru->nip}}" readonly="readonly" class="form-control">
@@ -27,13 +28,24 @@
 			{{$errors->first('mapel')}}
 		</div>
 
-		<div class="form-group">
+		<div class="form-group @if($errors->has('jurusan')) has-error @endif">
+			<label for="">Jurusan</label>
+			<select name="jurusan" id="jurusan" class="form-control">
+				<option value="">--Pilih jurusan--</option>
+				@foreach($jurusan as $jur)
+					<option value="{{$jur->kode_jurusan}}" @if($guru->soal->kode_jurusan==$jur->kode_jurusan) selected='selected' @endif>{{$jur->nama_jurusan}}</option>
+				@endforeach
+			</select>
+			{{$errors->first('jurusan')}}
+		</div>
+
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>
 				Simpan
 			</button>
 
-			<a href="{{URL::to('admin/jurusan')}}" class="btn btn-default">
+			<a href="{{URL::to('admin/guru')}}" class="btn btn-default">
 				Kembali
 			</a>
 		</div>

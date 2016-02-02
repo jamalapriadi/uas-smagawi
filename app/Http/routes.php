@@ -53,11 +53,22 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 	Route::get('detail-jadwal/{id}/edit','JadwalController@detail_jadwal');
 	Route::post('update-ruang','JadwalController@update_ruang');
 	Route::post('hapus-ruang','JadwalController@hapus_ruang');
+
+	//peserta ujian
+	Route::get('peserta-ujian','PesertaController@index');
+	Route::get('atur-peserta/{id}','PesertaController@atur_peserta');
+	Route::get('seting-peserta','PesertaController@setting');
+	Route::post('simpan-peserta','PesertaController@simpan_peserta');
+	Route::post('get-siswa','PesertaController@get_siswa');
 });
 
 //siswa area
 Route::group(['prefix'=>'siswa','middleware'=>'auth.siswa'],function(){
 	Route::get('/','SiswaArea@index');
+	Route::get('lihat-ujian','SiswaArea@lihat_ujian');
+	Route::post('ujian-berlangsung','SiswaArea@ujian_berlangsung');
+	Route::get('pilih-soal','SiswaArea@pilih_soal');
+	Route::get('selesai','SiswaArea@selesai');
 });
 //end siswa area
 
@@ -69,7 +80,14 @@ Route::group(['prefix'=>'pengawas','middleware'=>'auth.pengawas'],function(){
 
 //guru area
 Route::group(['prefix'=>'guru','middleware'=>'auth.guru'],function(){
+	Route::auth();
+
 	Route::get('/','GuruArea@index');
+	Route::get('create-soal','GuruArea@create_soal');
+	Route::post('simpan-soal','GuruArea@simpan_soal');
+	Route::get('edit/{id}','GuruArea@edit_soal');
+	Route::post('update-soal','GuruArea@update_soal');
+	Route::post('hapus-soal','GuruArea@hapus_soal');
 });
 //end guru area
 
@@ -90,4 +108,8 @@ Route::group(array('prefix'=>'login'),function(){
 	Route::get('logout-siswa','Auth\AuthController@logout_siswa');
 	Route::get('logout-guru','Auth\AuthController@logout_guru');
 	Route::get('logout-pengawas','Auth\AuthController@logout_pengawas');
+});
+
+Route::group(['prefix'=>'api'],function(){
+	Route::get('siswa','ApiController@siswa');
 });

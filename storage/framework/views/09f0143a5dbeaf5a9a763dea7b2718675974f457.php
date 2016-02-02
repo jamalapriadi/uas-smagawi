@@ -36,7 +36,19 @@
 
 		</div>
 
-		<div class="form-group">
+		<div class="form-group <?php if($errors->has('jurusan')): ?> has-error <?php endif; ?>">
+			<label for="">Jurusan</label>
+			<select name="jurusan" id="jurusan" class="form-control">
+				<option value="">--Pilih jurusan--</option>
+				<?php foreach($jurusan as $jur): ?>
+					<option value="<?php echo e($jur->kode_jurusan); ?>"><?php echo e($jur->nama_jurusan); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?php echo e($errors->first('jurusan')); ?>
+
+		</div>
+
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>
 				Simpan

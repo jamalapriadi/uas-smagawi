@@ -19,4 +19,8 @@ class Soal extends Model{
 		'jurusan.required'=>'Jurusan harus diisi',
 		'waktu.required'=>'Waktu Ujian harus diisi'
 	];
+
+	public function guru(){
+		return $this->belongsTo('App\Models\Guru','author');
+	}
 }

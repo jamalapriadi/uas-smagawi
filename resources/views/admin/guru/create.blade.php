@@ -33,7 +33,18 @@
 			{{$errors->first('mapel')}}
 		</div>
 
-		<div class="form-group">
+		<div class="form-group @if($errors->has('jurusan')) has-error @endif">
+			<label for="">Jurusan</label>
+			<select name="jurusan" id="jurusan" class="form-control">
+				<option value="">--Pilih jurusan--</option>
+				@foreach($jurusan as $jur)
+					<option value="{{$jur->kode_jurusan}}">{{$jur->nama_jurusan}}</option>
+				@endforeach
+			</select>
+			{{$errors->first('jurusan')}}
+		</div>
+
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>
 				Simpan

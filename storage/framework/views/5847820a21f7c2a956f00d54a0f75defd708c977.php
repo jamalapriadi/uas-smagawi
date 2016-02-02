@@ -1,11 +1,6 @@
 <?php $__env->startSection('content'); ?>
 	<legend>Data Soal</legend>
 
-	<a href="<?php echo e(URL::to('admin/soal/create')); ?>" class="btn btn-primary">
-		<i class="fa fa-plus"></i>
-		Tambah Soal
-	</a>
-
 	<hr>
 
 	<?php if(Session::has('pesan')): ?>
@@ -21,6 +16,7 @@
 				<th>No.</th>
 				<th>Mata Pelajaran</th>
 				<th>Jurusan</th>
+				<th>Penulis</th>
 				<th>Waktu Ujian</th>
 				<th></th>
 				<th></th>
@@ -35,6 +31,7 @@
 					<td><?php echo e($no); ?></td>
 					<td><?php echo e($row->kd_mapel); ?></td>
 					<td><?php echo e($row->kode_jurusan); ?></td>
+					<td><?php echo e($row->author); ?></td>
 					<td><?php echo e($row->waktu_ujian); ?></td>
 					<td>
 						<a href="<?php echo e(URL::to('admin/soal/'.$row->id)); ?>" class="btn btn-success">

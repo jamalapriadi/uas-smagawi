@@ -3,11 +3,6 @@
 @section('content')
 	<legend>Data Soal</legend>
 
-	<a href="{{URL::to('admin/soal/create')}}" class="btn btn-primary">
-		<i class="fa fa-plus"></i>
-		Tambah Soal
-	</a>
-
 	<hr>
 
 	@if(Session::has('pesan'))
@@ -22,6 +17,7 @@
 				<th>No.</th>
 				<th>Mata Pelajaran</th>
 				<th>Jurusan</th>
+				<th>Penulis</th>
 				<th>Waktu Ujian</th>
 				<th></th>
 				<th></th>
@@ -36,6 +32,7 @@
 					<td>{{$no}}</td>
 					<td>{{$row->kd_mapel}}</td>
 					<td>{{$row->kode_jurusan}}</td>
+					<td>{{$row->author}}</td>
 					<td>{{$row->waktu_ujian}}</td>
 					<td>
 						<a href="{{URL::to('admin/soal/'.$row->id)}}" class="btn btn-success">

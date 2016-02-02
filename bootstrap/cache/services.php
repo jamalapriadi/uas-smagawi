@@ -29,6 +29,7 @@
     25 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     26 => 'Collective\\Html\\HtmlServiceProvider',
     27 => 'Laracasts\\Flash\\FlashServiceProvider',
+    28 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'eager' => 
   array (
@@ -47,6 +48,7 @@
     12 => 'App\\Providers\\RouteServiceProvider',
     13 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     14 => 'Laracasts\\Flash\\FlashServiceProvider',
+    15 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'deferred' => 
   array (

@@ -23,4 +23,8 @@ class Pengawas extends Authenticatable{
 		'nama.required'=>'Nama Harus diisi',
 		'password.required'=>'Password harus diisi'
 	];
+
+	public function djadwal(){
+		return $this->hasOne('App\Models\Djadwal','pengawas');
+	}
 }

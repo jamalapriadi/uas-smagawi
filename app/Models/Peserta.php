@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+
 class Peserta extends Model{
 	protected $table="peserta_ujian";
 
@@ -17,4 +19,8 @@ class Peserta extends Model{
 		'nisn.required'=>'NIS harus diisi',
 		'ruang.required'=>'Ruang harus diisi'
 	];
+
+	public function siswa(){
+		return $this->belongsTo('App\Models\Siswa','nis');
+	}
 }

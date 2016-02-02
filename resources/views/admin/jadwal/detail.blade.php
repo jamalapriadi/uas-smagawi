@@ -51,7 +51,7 @@
 					<td>{{$no}}</td>
 					<td>{{$row->kd_kelas}}</td>
 					<td>{{$row->id_ruang}}</td>
-					<td>{{$row->pengawas}}</td>
+					<td>{{$row->getpengawas->nama}}</td>
 					<td>{{$row->status}}</td>
 					<td>
 						<a href="{{URL::to('admin/detail-jadwal/'.$row->id.'/edit')}}" class="btn btn-warning">

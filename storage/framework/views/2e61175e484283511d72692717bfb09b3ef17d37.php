@@ -22,6 +22,7 @@
 				<th>NIP</th>
 				<th>Nama</th>
 				<th>Mata Pelajaran</th>
+				<th>Jurusan</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -35,6 +36,7 @@
 					<td><?php echo e($row->nip); ?></td>
 					<td><?php echo e($row->nama); ?></td>
 					<td><?php echo e($row->mapel->nm_mapel); ?></td>
+					<td><?php echo e($row->soal->kode_jurusan); ?></td>
 					<td>
 						<a href="<?php echo e(URL::to('admin/guru/'.$row->nip.'/edit')); ?>" class="btn btn-warning">
 							<i class="glyphicon glyphicon-edit"></i>

@@ -1,0 +1,73 @@
+html,body{
+    height: 100%;
+}
+header{
+    background: #51A8B1;
+    min-height: 100px;
+}
+#main{
+    background: url('../img/logo.png') no-repeat;
+    background-position: 100px 5px; 
+}
+#main-admin{
+    background: white;
+    background-position: 100px 5px; 
+    min-height: 355px;
+}
+.box-panel{
+    background: white;
+    border-top:5px solid #d35400;
+    padding: 10px;
+    margin-top: 30px;
+}
+img.logo{
+    width: 90px;
+    height: 90px;
+    float: left;
+}
+.logo-caption{
+    float: left;
+}
+p.caption-besar{
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+}
+.navbar{
+    
+}
+.navbar ul li a{
+    color: #2c3e50;
+    font-weight: 570;
+}
+.navbar ul li a:hover{
+    background: #f2c81e !important;
+}
+/* menggganti background ketika dropdown itu diclick */
+.dropdown-toggle:active, .open .dropdown-toggle {background:#f2c81e !important; color:black !important;}
+
+/* mengganti style dropdown menu nya */
+.navbar-nav > li > .dropdown-menu { background-color: white; width: 190px; margin-top: 10px;}
+
+footer{
+    background: #51A8B1;
+    min-height: 80px;
+    padding:10px;
+    position: relative;
+    margin-top: 100px; /* negative value of footer height */
+}
+
+footer p{
+    color: black;
+}
+
+h3.footer{
+    font-weight: 700;
+    color: white;
+}
+p.footer{
+    text-align: right;
+    color: white;
+}
