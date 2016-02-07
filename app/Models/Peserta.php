@@ -23,4 +23,8 @@ class Peserta extends Model{
 	public function siswa(){
 		return $this->belongsTo('App\Models\Siswa','nis');
 	}
+
+	public function ruang(){
+		return $this->belongsTo('App\Models\Ruang','id_ruang');
+	}
 }

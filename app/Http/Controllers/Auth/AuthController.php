@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Input;
 
-use Redirect,Session;
+use Redirect,Session,DB;
 
 class AuthController extends Controller
 {
@@ -124,7 +124,7 @@ class AuthController extends Controller
         ];
 
         $pesan=[
-            'nis.required'=>'Nis harus diisi',
+            'nis.required'=>'No. Peserta harus diisi',
             'password.required'=>'Password harus diisi'
         ];
 
@@ -139,16 +139,39 @@ class AuthController extends Controller
             $auth=auth()->guard('siswa');
 
             $userdata = array(
-                'nis'     => Input::get('nis'),
+                'no_peserta'     => Input::get('nis'),
                 'password'  => Input::get('password')
             );
 
+            $cek=DB::table('siswa')->where('no_peserta',Input::get('nis'))->get();
+            if(count($cek)){
+                if ($auth->attempt($userdata)) {
+                    DB::table('siswa')
+                        ->where('no_peserta', Input::get('nis'))
+                        ->update(['status' => 1]);
+
+                    return Redirect::to('siswa');
+                }else{
+                    return Redirect::to('login/siswa')
+                        ->withPesan('Username atau Password salah');
+                }
+            }else{
+                return Redirect::to('login/siswa')
+                    ->withPesan('Username tidak ditemukan');
+            }
+
+            /*
             if ($auth->attempt($userdata)) {
+                DB::table('siswa')
+                    ->where('nis', Input::get('nis'))
+                    ->update(['status' => 1]);
+
                 return Redirect::to('siswa');
             }else{
                 return Redirect::to('login/siswa')
                     ->withPesan('Username atau Password salah');
             }
+            */
         }
     }
 
@@ -239,11 +262,17 @@ class AuthController extends Controller
     }
 
     public function logout_siswa(){
+        $nis=auth()->guard('siswa')->user()->nis;
+        DB::table('siswa')
+            ->where('nis', $nis)
+            ->update(['status' => 0]);
+
         auth()->guard('siswa')->logout();
+        Session::forget('jurusan');
 
         Session::flash('pesan','Anda berhasil logout');
 
-        return Redirect::to('login/siswa');
+        return Redirect::to('login/siswa'); 
     }
 
     public function logout_guru(){

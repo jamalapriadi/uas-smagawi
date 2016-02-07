@@ -27,13 +27,6 @@
 
 		</div>
 
-		<div class="form-group <?php if($errors->has('waktu')): ?> has-error <?php endif; ?>">
-			<label for="">Waktu Ujian</label>
-			<input type="number" name="waktu" value="<?php echo e($soal->waktu_ujian); ?>" class="form-control">
-			<?php echo e($errors->first('waktu')); ?>
-
-		</div>
-
 		<div class="form-group">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>

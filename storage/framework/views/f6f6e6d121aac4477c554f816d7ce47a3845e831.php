@@ -54,9 +54,10 @@
 
 	<?php echo e(Html::script('assets/js/jquery.dataTables.min.js')); ?>
 
-	<?php echo e(HTML::script('assets/datetimepicker/build/jquery.datetimepicker.full.js')); ?>
+	<?php echo e(Html::script('assets/datetimepicker/build/jquery.datetimepicker.full.js')); ?>
 
-	<script src="<?php echo e(URL::asset('assets/js/admin.js')); ?>"  type="text/javascript"></script>
+    <?php echo e(Html::script('assets/js/admin.js')); ?>
+
 
 	<?php echo $__env->yieldContent('footer'); ?>
 </body>

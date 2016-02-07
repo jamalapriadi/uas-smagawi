@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 02, 2016 at 09:51 
+-- Generation Time: Feb 04, 2016 at 02:26 
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Jamal Apriadi', 'jamal.apriadi@gmail.com', '$2y$10$luQOeq52HNf6egBNxTZl2ejOi0HKIioXnPA1Udav.VQzQpq7V1gsi', 'hekIXE1td5JivsDs1yFNnkvq7SJkh8yInUhtzyrj0T3GQuh6ipmG4R0HU5ES', '2016-02-02 08:11:17', '2016-02-02 01:11:17');
+(1, 'Jamal Apriadi', 'jamal.apriadi@gmail.com', '$2y$10$luQOeq52HNf6egBNxTZl2ejOi0HKIioXnPA1Udav.VQzQpq7V1gsi', 'HrYP3Vd93PGjzUo2HTImjNLdLQdVbRZxfkgJWLrQC6DAFgVdIEst2JwFckfO', '2016-02-03 14:33:57', '2016-02-03 14:33:57');
 
 -- --------------------------------------------------------
 
@@ -66,14 +66,14 @@ CREATE TABLE IF NOT EXISTS `detail_jadwal` (
   KEY `index3` (`id_jadwal`),
   KEY `index4` (`id_ruang`),
   KEY `index5` (`pengawas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `detail_jadwal`
 --
 
 INSERT INTO `detail_jadwal` (`id`, `id_jadwal`, `kd_kelas`, `jam_mulai`, `id_ruang`, `status`, `pengawas`) VALUES
-(4, 3, 'x.ims.1', NULL, 1, '0', '123');
+(7, 5, 'x.ims.1', NULL, 1, '0', '123');
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `guru` (
 --
 
 INSERT INTO `guru` (`nip`, `nama`, `password`, `kd_mapel`, `remember_token`) VALUES
-('123', 'Jamal Apriadi,S.Kom', '$2y$10$eFCgtxOsXBZkzpjBJ8HPX..V498T3pIUIOpcBrRlR8Y1CCtkjqlaO', 'MTK', '');
+('123', 'Jamal Apriadi,S.Kom', '$2y$10$eFCgtxOsXBZkzpjBJ8HPX..V498T3pIUIOpcBrRlR8Y1CCtkjqlaO', 'MTK', 'z2Sus3m9bNsmG2GGYBRmjNsf7wb2iqEmxMM4gK0FIyUhH2eAauaMe9AHzoxT');
 
 -- --------------------------------------------------------
 
@@ -134,19 +134,25 @@ INSERT INTO `guru` (`nip`, `nama`, `password`, `kd_mapel`, `remember_token`) VAL
 DROP TABLE IF EXISTS `jadwal`;
 CREATE TABLE IF NOT EXISTS `jadwal` (
   `id_jadwal` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `kode_jurusan` varchar(5) NOT NULL,
   `kd_mapel` varchar(10) DEFAULT NULL,
   `tgl_ujian` date DEFAULT NULL,
   `jam` time DEFAULT NULL,
+  `selesai` time NOT NULL,
+  `waktu_ujian` int(11) NOT NULL,
   PRIMARY KEY (`id_jadwal`),
-  KEY `index2` (`kd_mapel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  KEY `index2` (`kd_mapel`),
+  KEY `kode_jurusan` (`kode_jurusan`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `jadwal`
 --
 
-INSERT INTO `jadwal` (`id_jadwal`, `kd_mapel`, `tgl_ujian`, `jam`) VALUES
-(3, 'BI', '2016-01-26', '10:00:34');
+INSERT INTO `jadwal` (`id_jadwal`, `kode_jurusan`, `kd_mapel`, `tgl_ujian`, `jam`, `selesai`, `waktu_ujian`) VALUES
+(5, 'ims', 'BI', '2016-02-03', '19:00:46', '23:32:00', 60),
+(6, 'IS', 'BI', '2016-02-07', '07:00:13', '08:00:00', 60),
+(7, 'ims', 'MTK', '2016-02-03', '14:00:02', '15:00:00', 60);
 
 -- --------------------------------------------------------
 
@@ -271,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `pengawas` (
 --
 
 INSERT INTO `pengawas` (`nip`, `nama`, `username`, `password`, `remember_token`) VALUES
-('123', 'Jamal Apriadi,S.Kom', NULL, '$2y$10$m.3sLrYSAxUFA0Hv6dqsCeyXlz.tWlIfZj/YykrA5KYM72jEOtaz.', '5l3PKVPobh7QjbIbBolBHy1Shg7PsYWkdBQPZlgykGYJiNtM1GkxhhzdxStL');
+('123', 'Jamal Apriadi,S.Kom', NULL, '$2y$10$m.3sLrYSAxUFA0Hv6dqsCeyXlz.tWlIfZj/YykrA5KYM72jEOtaz.', '8OCnp7lSvYT129AqSooJjScTHu7WgMSfE9zTSroEGrTdHA4DEyUCrFdbrNhl');
 
 -- --------------------------------------------------------
 
@@ -289,14 +295,15 @@ CREATE TABLE IF NOT EXISTS `peserta_ujian` (
   KEY `id_jadwal` (`nis`,`id_ruang`),
   KEY `nisn` (`nis`),
   KEY `id_ruang` (`id_ruang`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `peserta_ujian`
 --
 
 INSERT INTO `peserta_ujian` (`id`, `nis`, `id_ruang`, `no_meja`) VALUES
-(1, 7923, 1, 1);
+(4, 7924, 1, 1),
+(5, 7925, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -323,14 +330,16 @@ CREATE TABLE IF NOT EXISTS `ruang_ujian` (
   `nama_ruang` varchar(45) DEFAULT NULL,
   `kuota` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_ruang`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `ruang_ujian`
 --
 
 INSERT INTO `ruang_ujian` (`id_ruang`, `nama_ruang`, `kuota`) VALUES
-(1, 'Lab A', '20');
+(1, 'Lab Komputer', '80'),
+(2, 'Lab Bahasa', '40'),
+(3, 'Ruang PSB', '30');
 
 -- --------------------------------------------------------
 
@@ -346,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `siswa` (
   `kd_kelas` varchar(10) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `remember_token` varchar(100) NOT NULL,
+  `status` enum('0','1') NOT NULL,
   PRIMARY KEY (`nis`),
   KEY `index2` (`kd_kelas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -354,9 +364,10 @@ CREATE TABLE IF NOT EXISTS `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nis`, `nisn`, `nama`, `kd_kelas`, `password`, `remember_token`) VALUES
-(7923, '', 'Jamal Apriadi', 'x.ims.2', '$2y$10$rgyRI.MiL9Tpsp88KIt2TOSy.Bc4cDznh7vfAsxfVFKslprS6OSAW', 'kUmXYQ1T9qK1KaWWSCqN4kUhumsAaHUgjPsWB1eVMJIk9xuzKUJxp7sOhr9y'),
-(7924, '', 'Eko Kurniawan', 'x.ims.1', '$2y$10$7KAF6x1m.K.LRMh.w6SYhegFS6YftMrSNq4IfUCjfxZ0EkbPGaZzu', '');
+INSERT INTO `siswa` (`nis`, `nisn`, `nama`, `kd_kelas`, `password`, `remember_token`, `status`) VALUES
+(7923, '', 'Jamal Apriadi', 'x.ims.2', '$2y$10$rgyRI.MiL9Tpsp88KIt2TOSy.Bc4cDznh7vfAsxfVFKslprS6OSAW', 'kUmXYQ1T9qK1KaWWSCqN4kUhumsAaHUgjPsWB1eVMJIk9xuzKUJxp7sOhr9y', '0'),
+(7924, '', 'Eko Kurniawan', 'x.ims.1', '$2y$10$7KAF6x1m.K.LRMh.w6SYhegFS6YftMrSNq4IfUCjfxZ0EkbPGaZzu', '', '0'),
+(7925, '', 'Nazar Zulmi', 'x.ims.1', '$2y$10$bhql9seDh7SNXj44UUSaUOGYaMcdbZoOdc.wQ8EwaNh/7.F7as.RS', 'CBvZFYSeloLSN5VQlIIw1MNIOzQuZOU2iFhM6olCjClshtT8Hs1XwGzAdwsP', '0');
 
 -- --------------------------------------------------------
 
@@ -410,6 +421,86 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Jamal Apriadi', 'jamal.apriadi@gmail.com', '$2y$10$RO215JIgzaLoYOOpo8h9TeDjd6Cr.AnT5p6xXjVN2E.gnn4MNwI0G', NULL, '2016-01-25 16:03:29', '0000-00-00 00:00:00');
 
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_detail_jadwal`
+--
+DROP VIEW IF EXISTS `view_detail_jadwal`;
+CREATE TABLE IF NOT EXISTS `view_detail_jadwal` (
+`id` int(11) unsigned
+,`id_jadwal` int(10) unsigned
+,`kd_kelas` varchar(10)
+,`jam_mulai` time
+,`id_ruang` int(10) unsigned
+,`status` enum('0','1','2')
+,`pengawas` varchar(25)
+,`kode_jurusan` varchar(5)
+,`kd_mapel` varchar(10)
+,`tgl_ujian` date
+,`jam` time
+,`selesai` time
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_jadwal`
+--
+DROP VIEW IF EXISTS `view_jadwal`;
+CREATE TABLE IF NOT EXISTS `view_jadwal` (
+`id_jadwal` int(10) unsigned
+,`kode_jurusan` varchar(5)
+,`kd_mapel` varchar(10)
+,`tgl_ujian` date
+,`jam` time
+,`selesai` time
+,`waktu_ujian` int(11)
+,`kd_kelas` varchar(10)
+,`jam_mulai` time
+,`id_ruang` int(10) unsigned
+,`status` enum('0','1','2')
+,`pengawas` varchar(25)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_peserta_ujian`
+--
+DROP VIEW IF EXISTS `view_peserta_ujian`;
+CREATE TABLE IF NOT EXISTS `view_peserta_ujian` (
+`nis` int(11)
+,`kd_kelas` varchar(10)
+,`id_ruang` int(10) unsigned
+,`nama_ruang` varchar(45)
+,`no_meja` int(11)
+);
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_detail_jadwal`
+--
+DROP TABLE IF EXISTS `view_detail_jadwal`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_detail_jadwal` AS select `a`.`id` AS `id`,`a`.`id_jadwal` AS `id_jadwal`,`a`.`kd_kelas` AS `kd_kelas`,`a`.`jam_mulai` AS `jam_mulai`,`a`.`id_ruang` AS `id_ruang`,`a`.`status` AS `status`,`a`.`pengawas` AS `pengawas`,`b`.`kode_jurusan` AS `kode_jurusan`,`b`.`kd_mapel` AS `kd_mapel`,`b`.`tgl_ujian` AS `tgl_ujian`,`b`.`jam` AS `jam`,`b`.`selesai` AS `selesai` from (`detail_jadwal` `a` join `jadwal` `b`) where (`a`.`id_jadwal` = `b`.`id_jadwal`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_jadwal`
+--
+DROP TABLE IF EXISTS `view_jadwal`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_jadwal` AS select `a`.`id_jadwal` AS `id_jadwal`,`a`.`kode_jurusan` AS `kode_jurusan`,`a`.`kd_mapel` AS `kd_mapel`,`a`.`tgl_ujian` AS `tgl_ujian`,`a`.`jam` AS `jam`,`a`.`selesai` AS `selesai`,`a`.`waktu_ujian` AS `waktu_ujian`,`b`.`kd_kelas` AS `kd_kelas`,`b`.`jam_mulai` AS `jam_mulai`,`b`.`id_ruang` AS `id_ruang`,`b`.`status` AS `status`,`b`.`pengawas` AS `pengawas` from (`jadwal` `a` join `detail_jadwal` `b`) where (`a`.`id_jadwal` = `b`.`id_jadwal`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_peserta_ujian`
+--
+DROP TABLE IF EXISTS `view_peserta_ujian`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_peserta_ujian` AS select `a`.`nis` AS `nis`,`b`.`kd_kelas` AS `kd_kelas`,`a`.`id_ruang` AS `id_ruang`,`c`.`nama_ruang` AS `nama_ruang`,`a`.`no_meja` AS `no_meja` from ((`peserta_ujian` `a` join `siswa` `b`) join `ruang_ujian` `c`) where ((`a`.`nis` = `b`.`nis`) and (`a`.`id_ruang` = `c`.`id_ruang`));
+
 --
 -- Constraints for dumped tables
 --
@@ -439,7 +530,8 @@ ALTER TABLE `guru`
 -- Constraints for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD CONSTRAINT `fk_jadwal_1` FOREIGN KEY (`kd_mapel`) REFERENCES `mapel` (`kd_mapel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_jadwal_1` FOREIGN KEY (`kd_mapel`) REFERENCES `mapel` (`kd_mapel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_kd_jurusan` FOREIGN KEY (`kode_jurusan`) REFERENCES `jurusan` (`kode_jurusan`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kelas`

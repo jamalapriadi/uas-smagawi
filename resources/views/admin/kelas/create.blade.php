@@ -4,6 +4,12 @@
 	<legend>Tambah Jurusan</legend>
 
 	{{Form::open(array('url'=>'admin/kelas','method'=>'post'))}}
+		<div class="form-group @if($errors->has('rombel')) has-error @endif">
+			<label for="">Rombel</label>
+			<input type="text" name="rombel" class="form-control">
+			{{$errors->first('rombel')}}
+		</div>
+
 		<div class="form-group @if($errors->has('kode')) has-error @endif">
 			<label for="">Kelas</label>
 			<select name="kode" id="kode" class="form-control">
@@ -36,7 +42,7 @@
 				Simpan
 			</button>
 
-			<a href="{{URL::to('admin/jurusan')}}" class="btn btn-default">
+			<a href="{{URL::to('admin/kelas')}}" class="btn btn-default">
 				Kembali
 			</a>
 		</div>

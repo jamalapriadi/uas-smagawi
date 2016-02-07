@@ -1,0 +1,2 @@
+create view view_detail_jadwal as select a.*,b.kode_jurusan,b.kd_mapel,b.tgl_ujian,b.jam,b.selesai from detail_jadwal a,
+jadwal b where a.id_jadwal=b.id_jadwal

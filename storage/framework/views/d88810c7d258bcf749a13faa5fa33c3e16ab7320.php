@@ -15,7 +15,7 @@
 				<?php endif; ?>
 				
 				<div class="form-group <?php if($errors->has('nis')): ?> has-error <?php endif; ?>">
-					<label for="">NIS</label>
+					<label for="">No. Peserta Ujian</label>
 					<input type="nis" name="nis" class="form-control">
 					<?php echo e($errors->first('nis')); ?>
 

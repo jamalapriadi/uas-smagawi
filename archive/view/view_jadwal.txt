@@ -1,0 +1,4 @@
+CREATE VIEW view_jadwal AS SELECT a . * , b.kd_kelas, b.jam_mulai, b.id_ruang, b.status, b.pengawas
+FROM jadwal a, detail_jadwal b
+WHERE a.id_jadwal = b.id_jadwal
+

@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
 	<title>Halaman Siswa</title>
 	{{Html::style('assets/css/bootstrap.min.css')}}
 	{{Html::style('assets/css/jquery.dataTables.css')}}
@@ -46,8 +49,10 @@
 	{{Html::script('assets/js/jquery-1.11.3.min.js')}}
 	{{Html::script('assets/js/bootstrap.min.js')}}
 	{{Html::script('assets/js/jquery.dataTables.min.js')}}
-	{{HTML::script('assets/datetimepicker/build/jquery.datetimepicker.full.js')}}
-	<script src="{{URL::asset('assets/js/admin.js')}}"  type="text/javascript"></script>
+	{{Html::script('assets/datetimepicker/build/jquery.datetimepicker.full.js')}}
+    {{Html::script('assets/js/admin.js')}}
+    {{HTML::script('assets/js/time/jquery.simple.timer.js')}}
+    {{HTML::script('assets/js/jqClock.min.js')}}
 
 	@yield('footer')
 </body>

@@ -3,8 +3,6 @@
 @section('content')
 	<legend>Data Soal</legend>
 
-	<hr>
-
 	@if(Session::has('pesan'))
 		<div class="alert alert-success">
 			{{Session::get('pesan')}}
@@ -18,8 +16,6 @@
 				<th>Mata Pelajaran</th>
 				<th>Jurusan</th>
 				<th>Penulis</th>
-				<th>Waktu Ujian</th>
-				<th></th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -33,17 +29,10 @@
 					<td>{{$row->kd_mapel}}</td>
 					<td>{{$row->kode_jurusan}}</td>
 					<td>{{$row->author}}</td>
-					<td>{{$row->waktu_ujian}}</td>
 					<td>
 						<a href="{{URL::to('admin/soal/'.$row->id)}}" class="btn btn-success">
 							<i class="glyphicon glyphicon-list-alt"></i>
 							Detail Soal
-						</a>
-					</td>
-					<td>
-						<a href="{{URL::to('admin/soal/'.$row->id.'/edit')}}" class="btn btn-warning">
-							<i class="glyphicon glyphicon-edit"></i>
-							Edit
 						</a>
 					</td>
 					<td>

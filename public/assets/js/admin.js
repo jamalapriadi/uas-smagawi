@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-	$("#data").dataTable();
 
 		$("a.hapus").on("click",function(){
 			var kode=$(this).attr("kode");
@@ -21,4 +20,11 @@ $(document).ready(function(){
 				datepicker:false,
 				format:'H:i:s'
 			});
+
+			$('#selesai').datetimepicker({
+				datepicker:false,
+				format:'H:i:s'
+			});
+
+	$("#data").dataTable();
 })

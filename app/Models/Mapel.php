@@ -23,4 +23,5 @@ class Mapel extends Model{
 	public function guru(){
 		return $this->hasOne('App\Models\Guru','kd_mapel');
 	}
+
 }

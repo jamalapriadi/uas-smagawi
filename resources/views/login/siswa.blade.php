@@ -15,7 +15,7 @@
 				@endif
 				
 				<div class="form-group @if($errors->has('nis')) has-error @endif">
-					<label for="">NIS</label>
+					<label for="">No. Peserta Ujian</label>
 					<input type="nis" name="nis" class="form-control">
 					{{$errors->first('nis')}}
 				</div>

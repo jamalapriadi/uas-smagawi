@@ -3,6 +3,18 @@
 
 	<?php echo e(Form::open(array('url'=>'admin/jadwal','method'=>'post'))); ?>
 
+		<div class="form-group <?php if($errors->has('jurusan')): ?> has-error <?php endif; ?>">
+			<label for="">Jurusan</label>
+			<select name="jurusan" id="jurusan" class="form-control">
+				<option value="">--Pilih Jurusan--</option>
+				<?php foreach($jurusan as $jur): ?>
+					<option value="<?php echo e($jur->kode_jurusan); ?>"><?php echo e($jur->nama_jurusan); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?php echo e($errors->first('jurusan')); ?>
+
+		</div>
+
 		<div class="form-group <?php if($errors->has('mapel')): ?> has-error <?php endif; ?>">
 			<label for="">Mata Pelajaran</label>
 			<select name="mapel" id="mapel" class="form-control">
@@ -28,17 +40,33 @@
 		</div>
 
 		<div class="form-group <?php if($errors->has('jam')): ?> has-error <?php endif; ?>">
-			<label for="">Jam</label>
+			<label for="">Jam Mulai</label>
 			<input type="text" name="jam" id="jam" class="form-control">
 			<?php echo e($errors->first('jam')); ?>
 
 		</div>
 
-		<div class="form-group">
+		<div class="form-group <?php if($errors->has('selesai')): ?> has-error <?php endif; ?>">
+			<label for="">Jam Selesai</label>
+			<input type="text" name="selesai" id="selesai" class="form-control">
+			<?php echo e($errors->first('selesai')); ?>
+
+		</div>
+
+		<div class="form-group <?php if($errors->has('lama')): ?> has-error <?php endif; ?>">
+			<label for="">Waktu Ujian ( Menit )</label>
+			<input type="number" name="lama" id="lama" class="form-control">
+			<?php echo e($errors->first('lama')); ?>
+
+		</div>
+
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="glyphicon glyphicon-saved"></i>
 				Simpan
 			</button>
+
+			<a href="<?php echo e(URL::to('admin/jadwal')); ?>" class="btn btn-default">Kembali</a>
 		</div>
 	<?php echo e(Form::close()); ?>
 

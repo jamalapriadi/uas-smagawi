@@ -18,7 +18,7 @@
       <br>
       <ul class="nav navbar-nav navbar-right">
          
-        <li><a href="<?php echo e(URL::to('login/logout')); ?>">Logout</a></li>
+        <li><a href="<?php echo e(URL::to('login/logout-pengawas')); ?>">Logout</a></li>
       </ul>
     </div>
   </div>

@@ -20,4 +20,12 @@ class Ruang extends Model{
 		'nama.required'=>'Nama harus diisi',
 		'kuota.required'=>'Kuota harus diisi'
 	];
+
+	public function Djadwal(){
+		return $this->hasOne('App\Models\Djadwal','id_ruang');
+	}
+
+	public function peserta(){
+		return $this->hasOne('App\Models\Peserta','id_ruang');
+	}
 }

@@ -1,4 +1,6 @@
 <?php $__env->startSection('head'); ?>
+	<?php echo e(Html::style('assets/fancybox/jquery.fancybox.css')); ?>
+
 	<style>
 		.nomor{
 			margin-bottom: 20px;
@@ -19,17 +21,31 @@
 				</div>
 
 				<div class="panel-body">
+					<div class="alert alert-warning">
+						<h4>Sisa Waktu :  <span class="timer" data-seconds-left=<?php echo e($detik); ?>></span></h4>
+					</div>
+
 					<ul class="list-inline">
-						<?php for($i=1;$i<=50;$i++): ?>
-							<li><a href="#" no="<?php echo e($i); ?>" class="btn btn-default nomor"><?php echo e($i); ?></a></li>
-						<?php endfor; ?>
+						<?php foreach($detail as $row): ?>
+						<li><a href="#" no="<?php echo e($row->id); ?>" class="btn <?php if($row->status=='0'): ?> btn-default <?php else: ?> btn-success <?php endif; ?> nomor"><?php echo e($row->soal_ke); ?></a></li>
+						<?php endforeach; ?>
 					</ul>
+				</div>
+
+				<div class="panel-footer">
+					<a href="<?php echo e(URL::to('siswa/selesai/'.$jadwal.'/'.$detailjadwal)); ?>" class="btn btn-block btn-warning">
+						Selesai
+					</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-lg-9">
-			<div id="pesan"></div>
+			<div id="pesan">
+				<?php if(Session::has('pesan')): ?>
+					<div class="alert alert-info"><?php echo e(Session::get('pesan')); ?></div>
+				<?php endif; ?>
+			</div>
 			<div id="loading" style="display:none;">Loading....</div>
 			<div id="soal"></div>
 		</div>
@@ -37,9 +53,22 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer'); ?>
+	<?php echo e(Html::script('assets/fancybox/jquery.fancybox.js')); ?>
+
+
 	<script>
 		$(function(){
+			$("a.single_image").fancybox();
+
+			$('.timer').startTimer({
+                onComplete: function(element){
+                  element.addClass('is-complete');
+                  window.location.href="<?php echo e(URL::to('siswa/waktu-habis')); ?>";
+                }
+            });
+
 			$('.nomor').click(function(){
+				$("#pesan").html('');
 				var no=$(this).attr("no");
 
 				$.ajax({
@@ -54,6 +83,24 @@
 						$("#soal").html(html);
 					}
 				});
+			});
+
+			$( document ).on( "click", "a.jawab", function() {
+				var soal=$(this).attr("no");
+				var jawaban=$("#jawaban").val();
+
+				$.ajax({
+					url:"<?php echo e(URL::to('siswa/jawab-soal')); ?>",
+					type:"POST",
+					data:"soal="+soal+"&jawaban="+jawaban,
+					cache:false,
+					success:function(){
+						location.reload();
+					},
+					error:function(){
+						alert("Jawaban gagal disimpan");
+					}
+				})
 			});
 		})
 	</script>

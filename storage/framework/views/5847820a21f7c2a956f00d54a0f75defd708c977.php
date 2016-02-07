@@ -1,8 +1,6 @@
 <?php $__env->startSection('content'); ?>
 	<legend>Data Soal</legend>
 
-	<hr>
-
 	<?php if(Session::has('pesan')): ?>
 		<div class="alert alert-success">
 			<?php echo e(Session::get('pesan')); ?>
@@ -17,8 +15,6 @@
 				<th>Mata Pelajaran</th>
 				<th>Jurusan</th>
 				<th>Penulis</th>
-				<th>Waktu Ujian</th>
-				<th></th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -32,17 +28,10 @@
 					<td><?php echo e($row->kd_mapel); ?></td>
 					<td><?php echo e($row->kode_jurusan); ?></td>
 					<td><?php echo e($row->author); ?></td>
-					<td><?php echo e($row->waktu_ujian); ?></td>
 					<td>
 						<a href="<?php echo e(URL::to('admin/soal/'.$row->id)); ?>" class="btn btn-success">
 							<i class="glyphicon glyphicon-list-alt"></i>
 							Detail Soal
-						</a>
-					</td>
-					<td>
-						<a href="<?php echo e(URL::to('admin/soal/'.$row->id.'/edit')); ?>" class="btn btn-warning">
-							<i class="glyphicon glyphicon-edit"></i>
-							Edit
 						</a>
 					</td>
 					<td>

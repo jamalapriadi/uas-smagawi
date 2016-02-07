@@ -1,31 +1,28 @@
-<legend>Soal No. {{$no}}</legend>
-			<p style="line-height:30px;">
-				SIAK yang akan diterapkan di Jakarta uji coba dari program pemerintah pusat untuk menciptakan suatu nomor identitas tunggal untuk semua keperluan. Pengganti nomor KTP lama dengan identitas tunggal untuk semua keperluan. Pengganti nomor KTP lama dengan nomor identitas tunggal akan dilakukan secara bertahap mulai Maret sampai menunggu  terbitnya peraturan pemerintah.
-				Ide pokok berita pada paragraph di atas adalah….
-			</p>
+<legend>Soal No. {{$soal->soal_ke}}</legend>
+	<a class="single_image" href="{{URL::asset('uploads/big/'.$soal->detail->gambar_besar)}}">
+		{{Html::image('uploads/small/'.$soal->detail->gambar_kecil,'',array('class'=>'img-responsive','style'=>' max-height:350px;'))}}
+	</a>
 
-			<ul style="list-style-type:none;line-height:30px;">
-				<li>
-					<input type="radio" name="jawaban"> Rencana pelaksanaan SIAK
-				</li>
+	<hr>
 
-				<li>
-					<input type="radio" name="jawaban"> Pemerintah akan melakukan validasi data
-				</li>
-
-				<li>
-					<input type="radio" name="jawaban"> Pernyataan gubernur tentang pelaksanaan SIAK
-				</li>
-
-				<li>
-					<input type="radio" name="jawaban"> Masyarakat harus berpartisipasi dalam pillkada
-				</li>
-
-				<li>
-					<input type="radio" name="jawaban"> Tidak ada pemungutan untuk biaya untuk mendapatkan nomor identitas
-				</li>
-			</ul>
-
-			<div class="well">
-				<button class="btn btn-primary">Simpan Jawaban</button>
-			</div>
+	<div class="form-group">
+		<label for="">Jawaban Anda</label>
+		<select name="jawaban" id="jawaban" class="form-control">
+			<option value="">--Pilih Jawaban--</option>
+			<option value="a" @if($soal->jawaban=='a') selected='selected' @endif>A</option>
+			<option value="b" @if($soal->jawaban=='b') selected='selected' @endif>B</option>
+			<option value="c" @if($soal->jawaban=='c') selected='selected' @endif>C</option>
+			<option value="d" @if($soal->jawaban=='d') selected='selected' @endif>D</option>
+		</select>
+	</div>
+	
+	<hr>
+	<div class="well">
+		<a href="#" no="{{$no}}" class="btn btn-success jawab">
+			@if($soal->status==0)
+				Jawab
+			@else
+				Ubah Jawaban
+			@endif
+		</a>
+	</div>

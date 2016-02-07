@@ -3,7 +3,7 @@
 @section('content')
     <legend>Setting Peserta Ujian</legend>
 
-    {{Form::open(['url'=>'admin/simpan-peserta','method'=>'post','class'=>'form-horizontal'])}}
+    <div class="form-horizontal">
         <div class="form-group">
             <div class="col-lg-2 control-label">Ruang Ujian</div>
             <div class="col-lg-4">
@@ -27,7 +27,7 @@
                 </select>
             </div>
         </div>
-
+    </div>
     <hr>
 
     <div id="loading" style="display:none;">
@@ -37,20 +37,31 @@
     </div>
 
     <div id="tampil"></div>
-
-    {{Form::close()}}
 @stop
 
 @section('footer')
     <script>
         $(function(){
+            $("#kelas").attr("disabled",true);
+
+            $("#ruang").change(function(){
+                var ruang=$("#ruang").val();
+
+                if(ruang==""){
+                    $("#kelas").attr("disabled",true);
+                }else{
+                    $("#kelas").attr("disabled",false);
+                }
+            });
+
             $("#kelas").change(function(){
+                var ruang=$("#ruang").val();
                 var kelas=$("#kelas").val();
 
                 $.ajax({
                     url:"{{URL::to('admin/get-siswa')}}",
-                    type:"POST",
-                    data:"kelas="+kelas,
+                    type:"GET",
+                    data:"kelas="+kelas+"&ruang="+ruang,
                     cache:false,
                     beforeSend:function(){
                         $("#loading").show();

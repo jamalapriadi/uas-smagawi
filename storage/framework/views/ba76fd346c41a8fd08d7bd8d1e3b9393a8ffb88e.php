@@ -10,6 +10,10 @@
 
 	<table class="table">
 		<tr>
+			<th>Jurusan</th>
+			<th> : <?php echo e($jadwal->kode_jurusan); ?></th>
+		</tr>
+		<tr>
 			<th>Mata Pelajaran</th>
 			<th> : <?php echo e($jadwal->kd_mapel); ?></th>
 		</tr>
@@ -19,7 +23,7 @@
 		</tr>
 		<tr>
 			<th>Jam</th>
-			<th> : <?php echo e($jadwal->jam); ?></th>
+			<th> : <?php echo e($jadwal->jam); ?> s.d <?php echo e($jadwal->selesai); ?></th>
 		</tr>
 	</table>
 
@@ -27,6 +31,8 @@
 		<i class="glyphicon glyphicon-plus"></i>
 		Tambah Ruang
 	</a>
+
+	<a href="<?php echo e(URL::to('admin/jadwal')); ?>" class="btn btn-default">Kembali</a>
 
 	<hr>
 
@@ -49,7 +55,7 @@
 				<tr>
 					<td><?php echo e($no); ?></td>
 					<td><?php echo e($row->kd_kelas); ?></td>
-					<td><?php echo e($row->id_ruang); ?></td>
+					<td><?php echo e($row->ruang->nama_ruang); ?></td>
 					<td><?php echo e($row->getpengawas->nama); ?></td>
 					<td><?php echo e($row->status); ?></td>
 					<td>

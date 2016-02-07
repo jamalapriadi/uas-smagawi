@@ -1,31 +1,38 @@
-<table class="table table-striped">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>NISN</th>
-                <th>Nama</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for($i=1;$i<=20;$i++): ?>
-                <tr>
-                    <td><?php echo e($i); ?></td>
-                    <td>7923</td>
-                    <td>Jamal Apriadi</td>
-                    <td>
-                        <div class="col-xs-3">
-                            <input type="number" name="no" class="form-control">
-                        </div>
-                    </td>
-                </tr>
-            <?php endfor; ?>
-        </tbody>
-    </table>
+<?php echo e(Form::open(['url'=>'admin/simpan-peserta','method'=>'post'])); ?>
 
-    <div class="form-group well">
-        <button class="btn btn-primary">
-            <i class="glyphicon glyphicon-refresh"></i>
-            Tambahkan
-        </button>
-    </div>
+<input type="hidden" name="kelas" value="<?php echo e($kelas); ?>" class="form-control">
+<input type="hidden" name="ruang" value="<?php echo e($ruang); ?>" class="form-control">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>NISN</th>
+            <th>Nama</th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $no=0;?>
+        <?php foreach($siswa as $row): ?>
+            <?php $no++;?>
+            <tr>
+                <td><?php echo e($no); ?></td>
+                <td><?php echo e($row->nis); ?></td>
+                <td><?php echo e($row->nama); ?></td>
+                <td>
+                    <input type="checkbox" name="nis[]" value="<?php echo e($row->nis); ?>">
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<div class="form-group well">
+    <button class="btn btn-primary">
+        <i class="glyphicon glyphicon-refresh"></i>
+        Tambahkan
+    </button>
+</div>
+<?php echo e(Form::close()); ?>

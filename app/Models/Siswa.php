@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Siswa extends Authenticatable{
@@ -13,9 +13,9 @@ class Siswa extends Authenticatable{
 	public $timestamps=false;
 
 	public static $rules=[
+		'peserta'=>'required|unique:siswa,no_peserta',
 		'nis'=>'required|unique:siswa,nis',
 		'nama'=>'required',
-		'password'=>'required',
 		'kelas'=>'required'
 	];
 
@@ -25,10 +25,10 @@ class Siswa extends Authenticatable{
 	];
 
 	public static $pesan=[
+		'peserta.required'=>'No Peserta harus diisi',
 		'nis.required'=>'NIS harus diisi',
 		'nis.unique'=>'Nis sudah ada',
 		'nama.required'=>'Nama harus diisi',
-		'password.required'=>'Password harus diisi',
 		'kelas.required'=>'Kelas harus diisi'
 	];
 

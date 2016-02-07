@@ -11,6 +11,10 @@
 
 	<table class="table">
 		<tr>
+			<th>Jurusan</th>
+			<th> : {{$jadwal->kode_jurusan}}</th>
+		</tr>
+		<tr>
 			<th>Mata Pelajaran</th>
 			<th> : {{$jadwal->kd_mapel}}</th>
 		</tr>
@@ -20,7 +24,7 @@
 		</tr>
 		<tr>
 			<th>Jam</th>
-			<th> : {{$jadwal->jam}}</th>
+			<th> : {{$jadwal->jam}} s.d {{$jadwal->selesai}}</th>
 		</tr>
 	</table>
 
@@ -28,6 +32,8 @@
 		<i class="glyphicon glyphicon-plus"></i>
 		Tambah Ruang
 	</a>
+
+	<a href="{{URL::to('admin/jadwal')}}" class="btn btn-default">Kembali</a>
 
 	<hr>
 
@@ -50,7 +56,7 @@
 				<tr>
 					<td>{{$no}}</td>
 					<td>{{$row->kd_kelas}}</td>
-					<td>{{$row->id_ruang}}</td>
+					<td>{{$row->ruang->nama_ruang}}</td>
 					<td>{{$row->getpengawas->nama}}</td>
 					<td>{{$row->status}}</td>
 					<td>

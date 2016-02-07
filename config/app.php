@@ -52,7 +52,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    //'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +163,8 @@ return [
         'Maatwebsite\Excel\ExcelServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class
 
 
     ],
@@ -210,13 +212,15 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Flash' => 'Laracasts\Flash\Flash',
 
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class
 
     ],
 

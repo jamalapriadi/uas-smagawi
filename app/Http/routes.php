@@ -37,7 +37,13 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 	Route::resource('mapel','MapelController');
 	Route::resource('ruang','RuangController');
 	Route::resource('guru','GuruController');
+
+
 	Route::resource('siswa','SiswaController');
+	Route::get('import-siswa','SiswaController@import');
+	Route::post('proses-import-siswa','SiswaController@proses_import');
+
+
 	Route::resource('soal','SoalController');
 	Route::resource('jadwal','JadwalController');
 	Route::resource('pengawas','PengawasController');
@@ -59,22 +65,42 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 	Route::get('atur-peserta/{id}','PesertaController@atur_peserta');
 	Route::get('seting-peserta','PesertaController@setting');
 	Route::post('simpan-peserta','PesertaController@simpan_peserta');
-	Route::post('get-siswa','PesertaController@get_siswa');
+	Route::get('get-siswa','PesertaController@get_siswa');
+	Route::post('hapus-peserta','PesertaController@hapus_peserta');
+
+	Route::group(['prefix'=>'laporan'],function(){
+		Route::get('siswa','LapController@siswa');
+		Route::get('export-siswa','LapController@export_siswa');
+		Route::get('preview-cetak-siswa','LapController@preview_cetak_siswa');
+		Route::get('export-siswa-pdf','LapController@export_siswa_pdf');
+
+		//nilai
+		Route::get('nilai','LapController@nilai');
+		Route::post('preview-nilai','LapController@preview_nilai');
+		Route::get('detail-nilai/{id}','LapController@detail_nilai');
+	});
 });
 
 //siswa area
 Route::group(['prefix'=>'siswa','middleware'=>'auth.siswa'],function(){
 	Route::get('/','SiswaArea@index');
 	Route::get('lihat-ujian','SiswaArea@lihat_ujian');
+	Route::post('lihat-ujian','SiswaArea@proses_lihat_ujian');
 	Route::post('ujian-berlangsung','SiswaArea@ujian_berlangsung');
+	Route::get('ujian-berlangsung/{jadwal}/{detail}','SiswaArea@sedang_ujian');
 	Route::get('pilih-soal','SiswaArea@pilih_soal');
-	Route::get('selesai','SiswaArea@selesai');
+	Route::post('jawab-soal','SiswaArea@jawab_soal');
+	Route::get('selesai/{jadwal}/{detailjadwal}','SiswaArea@selesai');
+	Route::post('telah-selesai','SiswaArea@proses_selesai');
+	Route::get('waktu-habis','SiswaArea@waktu_habis');
 });
 //end siswa area
 
 //pengawas area
 Route::group(['prefix'=>'pengawas','middleware'=>'auth.pengawas'],function(){
 	Route::get('/','PengawasArea@index');
+	Route::get('load-siswa','PengawasArea@load_siswa');
+	Route::post('get-token','PengawasArea@get_token');
 });
 //end pengawas area
 
@@ -112,4 +138,6 @@ Route::group(array('prefix'=>'login'),function(){
 
 Route::group(['prefix'=>'api'],function(){
 	Route::get('siswa','ApiController@siswa');
+	Route::get('tes','ApiController@tes');
+	Route::get('acak','ApiController@acak');
 });

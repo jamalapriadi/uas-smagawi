@@ -32,21 +32,41 @@
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Soal <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="<?php echo e(URL::to('admin/soal')); ?>">Data Soal</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Jadwal <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo e(URL::to('admin/jadwal')); ?>">Data Jadwal</a></li>
             <li><a href="<?php echo e(URL::to('admin/pengawas')); ?>">Data Pengawas</a></li>
           </ul>
         </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Soal <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="<?php echo e(URL::to('admin/soal')); ?>">Data Soal</a></li>
+          </ul>
+        </li>
+
         <li><a href="<?php echo e(URL::to('admin/peserta-ujian')); ?>">Peserta Ujian</a></li>
-        <li><a href="<?php echo e(URL::to('login/logout')); ?>">Logout</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Laporan <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="<?php echo e(URL::to('admin/laporan/siswa')); ?>">Data Siswa</a></li>
+            <li><a href="<?php echo e(URL::to('admin/laporan/guru')); ?>">Data Guru</a></li>
+            <li><a href="<?php echo e(URL::to('admin/laporan/jadwal')); ?>">Jadwal Ujian</a></li>
+            <li><a href="<?php echo e(URL::to('admin/laporan/peserta')); ?>">Peserta Ujian</a></li>
+            <li><a href="<?php echo e(URL::to('admin/laporan/nilai')); ?>">Nilai Ujian</a></li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo e(auth()->guard('admin')->user()->name); ?> <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="<?php echo e(URL::to('admin/profile')); ?>">Profile</a></li>
+            <li><a href="<?php echo e(URL::to('login/logout')); ?>">Logout</a></li>
+          </ul>
+        </li>        
+        
       </ul>
     </div>
   </div>

@@ -11,6 +11,7 @@ class Kelas extends Model{
 	public $timestamps=false;
 
 	static $rulesbaru=[
+		'rombel'=>'required',
 		'kode'=>'required',
 		'jurusan'=>'required',
 		'sub'=>'required'
@@ -19,7 +20,8 @@ class Kelas extends Model{
 	static $rules=[
 		'kode'=>'required',
 		'jurusan'=>'required',
-		'sub'=>'required'
+		'sub'=>'required',
+		'rombel.required'=>'Rombel harus diisi'
 	];
 
 	static $pesan=[

@@ -1,31 +1,29 @@
-<legend>Soal No. <?php echo e($no); ?></legend>
-			<p style="line-height:30px;">
-				SIAK yang akan diterapkan di Jakarta uji coba dari program pemerintah pusat untuk menciptakan suatu nomor identitas tunggal untuk semua keperluan. Pengganti nomor KTP lama dengan identitas tunggal untuk semua keperluan. Pengganti nomor KTP lama dengan nomor identitas tunggal akan dilakukan secara bertahap mulai Maret sampai menunggu  terbitnya peraturan pemerintah.
-				Ide pokok berita pada paragraph di atas adalah….
-			</p>
+<legend>Soal No. <?php echo e($soal->soal_ke); ?></legend>
+	<a class="single_image" href="<?php echo e(URL::asset('uploads/big/'.$soal->detail->gambar_besar)); ?>">
+		<?php echo e(Html::image('uploads/small/'.$soal->detail->gambar_kecil,'',array('class'=>'img-responsive','style'=>' max-height:350px;'))); ?>
 
-			<ul style="list-style-type:none;line-height:30px;">
-				<li>
-					<input type="radio" name="jawaban"> Rencana pelaksanaan SIAK
-				</li>
+	</a>
 
-				<li>
-					<input type="radio" name="jawaban"> Pemerintah akan melakukan validasi data
-				</li>
+	<hr>
 
-				<li>
-					<input type="radio" name="jawaban"> Pernyataan gubernur tentang pelaksanaan SIAK
-				</li>
-
-				<li>
-					<input type="radio" name="jawaban"> Masyarakat harus berpartisipasi dalam pillkada
-				</li>
-
-				<li>
-					<input type="radio" name="jawaban"> Tidak ada pemungutan untuk biaya untuk mendapatkan nomor identitas
-				</li>
-			</ul>
-
-			<div class="well">
-				<button class="btn btn-primary">Simpan Jawaban</button>
-			</div>
+	<div class="form-group">
+		<label for="">Jawaban Anda</label>
+		<select name="jawaban" id="jawaban" class="form-control">
+			<option value="">--Pilih Jawaban--</option>
+			<option value="a" <?php if($soal->jawaban=='a'): ?> selected='selected' <?php endif; ?>>A</option>
+			<option value="b" <?php if($soal->jawaban=='b'): ?> selected='selected' <?php endif; ?>>B</option>
+			<option value="c" <?php if($soal->jawaban=='c'): ?> selected='selected' <?php endif; ?>>C</option>
+			<option value="d" <?php if($soal->jawaban=='d'): ?> selected='selected' <?php endif; ?>>D</option>
+		</select>
+	</div>
+	
+	<hr>
+	<div class="well">
+		<a href="#" no="<?php echo e($no); ?>" class="btn btn-success jawab">
+			<?php if($soal->status==0): ?>
+				Jawab
+			<?php else: ?>
+				Ubah Jawaban
+			<?php endif; ?>
+		</a>
+	</div>

@@ -45,9 +45,6 @@
 
 	{{Html::script('assets/js/jquery-1.11.3.min.js')}}
 	{{Html::script('assets/js/bootstrap.min.js')}}
-	{{Html::script('assets/js/jquery.dataTables.min.js')}}
-	{{HTML::script('assets/datetimepicker/build/jquery.datetimepicker.full.js')}}
-	<script src="{{URL::asset('assets/js/admin.js')}}"  type="text/javascript"></script>
 
 	@yield('footer')
 </body>

@@ -55,7 +55,7 @@ class KelasController extends Controller
                 ->WithErrors($validasi);
         }else{
             $kelas=new Kelas;
-            $kelas->kd_kelas=$request->input('kode').'.'.$request->input('jurusan').'.'.$request->input('sub');
+            $kelas->kd_kelas=$request->input('rombel');
             $kelas->kelas=$request->input('kode');
             $kelas->kode_jurusan=$request->input('jurusan');
             $kelas->sub_kelas=$request->input('sub');
@@ -111,6 +111,7 @@ class KelasController extends Controller
                 ->withInput()
                 ->WithErrors($validasi);
         }else{
+            $kelas->kd_kelas=$request->input('rombel');
             $kelas->kelas=$request->input('kode');
             $kelas->kode_jurusan=$request->input('jurusan');
             $kelas->sub_kelas=$request->input('sub');

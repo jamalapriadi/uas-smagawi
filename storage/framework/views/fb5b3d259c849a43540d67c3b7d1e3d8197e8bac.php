@@ -19,9 +19,11 @@
 		<thead>
 			<tr>
 				<th>No.</th>
+				<th>Jurusan</th>
 				<th>Mata Pelajaran</th>
 				<th>Tanggal</th>
 				<th>Jam</th>
+				<th>Lama Ujian ( Menit )</th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -33,9 +35,11 @@
 				<?php $no++;?>
 				<tr>
 					<td><?php echo e($no); ?></td>
+					<td><?php echo e($row->kode_jurusan); ?></td>
 					<td><?php echo e($row->kd_mapel); ?></td>
 					<td><?php echo e($row->tgl_ujian); ?></td>
-					<td><?php echo e($row->jam); ?></td>
+					<td><?php echo e($row->jam); ?> s/d <?php echo e($row->selesai); ?></td>
+					<td><?php echo e($row->waktu_ujian); ?></td>
 					<td>
 						<a href="<?php echo e(URL::to('admin/jadwal/'.$row->id_jadwal)); ?>" class="btn btn-success">
 							<i class="glyphicon glyphicon-list-alt"></i>

@@ -1,3 +1,13 @@
+<?php $__env->startSection('head'); ?>
+	<?php echo e(Html::style('assets/fancybox/jquery.fancybox.css')); ?>
+
+	<style>
+		img.kecil{
+			width: 200px;
+		}
+	</style>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 	<legend>Data Soal # <?php echo e($soal->kd_mapel); ?></legend>
 
@@ -20,7 +30,7 @@
 
 	<div id="pesan"></div>
 
-	<table class="table" id="data">
+	<table class="table" id="datatabel">
 				<thead>
 					<tr>
 						<th>No.</th>
@@ -34,7 +44,12 @@
 						<?php $no++;?>
 						<tr>
 							<td><?php echo e($no); ?></td>
-							<td><?php echo e(Html::image('uploads/small/'.$row->gambar_kecil,'',array('class'=>'img-responsive'))); ?></td>
+							<td>
+								<a class="single_image" href="<?php echo e(URL::asset('uploads/big/'.$row->gambar_kecil)); ?>">
+									<?php echo e(Html::image('uploads/small/'.$row->gambar_kecil,'',array('class'=>'kecil img-responsive'))); ?>
+
+								</a>
+							</td>
 							<td><?php echo e($row->kunci_jawaban); ?></td>
 						</tr>
 					<?php endforeach; ?>
@@ -66,9 +81,16 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer'); ?>
+	<?php echo e(Html::script('assets/fancybox/jquery.fancybox.js')); ?>
+
+
 	<script>
 		$(function(){
+			$("a.single_image").fancybox();
+			$("#datatabel").dataTable();
+
 			$("#konfirmasi").click(function(){
+
 				var kode=$("#idhapus").val();
 
 				$.ajax({

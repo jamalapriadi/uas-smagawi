@@ -30,6 +30,7 @@
     26 => 'Collective\\Html\\HtmlServiceProvider',
     27 => 'Laracasts\\Flash\\FlashServiceProvider',
     28 => 'Intervention\\Image\\ImageServiceProvider',
+    29 => 'Barryvdh\\DomPDF\\ServiceProvider',
   ),
   'eager' => 
   array (
@@ -49,6 +50,7 @@
     13 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     14 => 'Laracasts\\Flash\\FlashServiceProvider',
     15 => 'Intervention\\Image\\ImageServiceProvider',
+    16 => 'Barryvdh\\DomPDF\\ServiceProvider',
   ),
   'deferred' => 
   array (

@@ -20,9 +20,11 @@
 		<thead>
 			<tr>
 				<th>No.</th>
+				<th>Jurusan</th>
 				<th>Mata Pelajaran</th>
 				<th>Tanggal</th>
 				<th>Jam</th>
+				<th>Lama Ujian ( Menit )</th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -34,9 +36,11 @@
 				<?php $no++;?>
 				<tr>
 					<td>{{$no}}</td>
+					<td>{{$row->kode_jurusan}}</td>
 					<td>{{$row->kd_mapel}}</td>
 					<td>{{$row->tgl_ujian}}</td>
-					<td>{{$row->jam}}</td>
+					<td>{{$row->jam}} s/d {{$row->selesai}}</td>
+					<td>{{$row->waktu_ujian}}</td>
 					<td>
 						<a href="{{URL::to('admin/jadwal/'.$row->id_jadwal)}}" class="btn btn-success">
 							<i class="glyphicon glyphicon-list-alt"></i>

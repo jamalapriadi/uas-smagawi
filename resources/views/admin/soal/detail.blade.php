@@ -1,5 +1,14 @@
 @extends('admin.template')
 
+@section('head')
+	{{Html::style('assets/fancybox/jquery.fancybox.css')}}
+	<style>
+		img.kecil{
+			width: 200px;
+		}
+	</style>
+@stop
+
 @section('content')
 	<legend>Data Soal # {{$soal->kd_mapel}}</legend>
 
@@ -22,7 +31,7 @@
 
 	<div id="pesan"></div>
 
-	<table class="table" id="data">
+	<table class="table" id="datatabel">
 				<thead>
 					<tr>
 						<th>No.</th>
@@ -36,7 +45,11 @@
 						<?php $no++;?>
 						<tr>
 							<td>{{$no}}</td>
-							<td>{{Html::image('uploads/small/'.$row->gambar_kecil,'',array('class'=>'img-responsive'))}}</td>
+							<td>
+								<a class="single_image" href="{{URL::asset('uploads/big/'.$row->gambar_kecil)}}">
+									{{Html::image('uploads/small/'.$row->gambar_kecil,'',array('class'=>'kecil img-responsive'))}}
+								</a>
+							</td>
 							<td>{{$row->kunci_jawaban}}</td>
 						</tr>
 					@endforeach
@@ -68,9 +81,15 @@
 @stop
 
 @section('footer')
+	{{Html::script('assets/fancybox/jquery.fancybox.js')}}
+
 	<script>
 		$(function(){
+			$("a.single_image").fancybox();
+			$("#datatabel").dataTable();
+
 			$("#konfirmasi").click(function(){
+
 				var kode=$("#idhapus").val();
 
 				$.ajax({

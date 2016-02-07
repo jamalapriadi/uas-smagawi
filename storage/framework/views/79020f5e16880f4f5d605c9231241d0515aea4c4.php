@@ -32,7 +32,7 @@
 
     <div id="pesan"></div>
 
-    <table class="table table-striped">
+    <table class="table table-striped" id="datapeserta">
         <thead>
             <tr>
                 <th>No.</th>
@@ -45,7 +45,6 @@
         </thead>
         <tbody>
             <?php $no=0;?>
-            <!--
             <?php foreach($peserta as $row): ?>
                 <?php $no++;?>
                 <tr>
@@ -55,109 +54,65 @@
                     <td><?php echo e($row->siswa->nama); ?></td>
                     <td><?php echo e($row->siswa->kd_kelas); ?></td>
                     <td>
-                        <a href="#" class="btn btn-danger">
+                        <a href="#" kode="<?php echo e($row->id); ?>" class="btn btn-danger hapus">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
-            -->
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>7923</td>
-                <td>Jamal Apriadi</td>
-                <td>X.IS.1</td>
-                <td>
-                    <a href="#" class="btn btn-danger hapus">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>2</td>
-                <td>7923</td>
-                <td>Jamal Apriadi</td>
-                <td>X.IS.1</td>
-                <td>
-                    <a href="#" class="btn btn-danger hapus">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>3</td>
-                <td>7923</td>
-                <td>Jamal Apriadi</td>
-                <td>X.IS.1</td>
-                <td>
-                    <a href="#" class="btn btn-danger hapus">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>4</td>
-                <td>7923</td>
-                <td>Jamal Apriadi</td>
-                <td>X.IS.1</td>
-                <td>
-                    <a href="#" class="btn btn-danger hapus">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>5</td>
-                <td>7923</td>
-                <td>Jamal Apriadi</td>
-                <td>X.IS.1</td>
-                <td>
-                    <a href="#" class="btn btn-danger hapus">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
         </tbody>
     </table>
-<?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('footer'); ?>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Konfirmasi</h4>
+            <h4 class="modal-title" id="myModalLabel">Konfirmasi?</h4>
           </div>
           <div class="modal-body">
+            <div id="loading" style="display:none;">Loading. . .</div>
+            <input type="hidden" id="idhapus">
             <p>Apakah anda yakin ingin menghapus data ini?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" id="konfirmasi" class="btn btn-primary">Hapus</button>
+            <button type="button" id="hps" class="btn btn-primary">Hapus</button>
           </div>
         </div>
       </div>
     </div>
 
+<?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('footer'); ?>
     <script>
         $(function(){
-            $(".hapus").click(function(){
-                $("#pesan").html('');
-                $("#myModal").modal("show");
+
+            $("#hps").click(function(){
+                var kode=$("#idhapus").val();
+
+                $.ajax({
+                    url:"<?php echo e(URL::to('admin/hapus-peserta')); ?>",
+                    type:"POST",
+                    data:"kode="+kode,
+                    cache:false,
+                    beforeSend:function(){
+                        $("#loading").show();
+                    },
+                    success:function(){
+                        location.reload();
+                    },
+                    error:function(){
+                        $("#loading").hide();
+                        $("#myModal").modal("hide");
+                        $("#pesan").html("<div class='alert alert-danger'>Data Gagal dihapus</div>");
+                    }
+                })
             });
 
-            $("#konfirmasi").click(function(){
-                $("#pesan").html("<div class='alert alert-success'>Data Berhasil dihapus</div>");
-                $("#myModal").modal("hide");
-            })
+            $("#datapeserta").dataTable();
         })
     </script>
 <?php $__env->stopSection(); ?>

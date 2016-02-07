@@ -121,7 +121,7 @@
 	<script>
 		$(function(){
 			$("a.single_image").fancybox();
-			$("#data").dataTable();
+			
 
 			$( document ).on( "click", "a.hapus", function() {
 			  	var kode=$(this).attr("kode");
@@ -151,6 +151,8 @@
 					}
 				})
 			})
+
+			$("#data").dataTable();
 		})
 	</script>
 <?php $__env->stopSection(); ?>

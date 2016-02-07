@@ -4,6 +4,12 @@
 	<legend>Tambah Jurusan</legend>
 
 	{!! Form::model($kelas,array('url'=>route('admin.kelas.update',['kelas'=>$kelas->kd_kelas]),'method'=>'put'))!!}
+		<div class="form-group @if($errors->has('rombel')) has-error @endif">
+			<label for="">Rombel</label>
+			<input type="text" name="rombel" value="{{$kelas->kd_kelas}}" class="form-control">
+			{{$errors->first('rombel')}}
+		</div>
+
 		<div class="form-group @if($errors->has('kode')) has-error @endif">
 			<label for="">Kelas</label>
 			<select name="kode" id="kode" class="form-control">
@@ -36,7 +42,7 @@
 				Simpan
 			</button>
 
-			<a href="{{URL::to('admin/jurusan')}}" class="btn btn-default">
+			<a href="{{URL::to('admin/kelas')}}" class="btn btn-default">
 				Kembali
 			</a>
 		</div>

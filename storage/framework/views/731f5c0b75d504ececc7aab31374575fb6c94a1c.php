@@ -3,6 +3,13 @@
 
 	<?php echo e(Form::open(array('url'=>'admin/kelas','method'=>'post'))); ?>
 
+		<div class="form-group <?php if($errors->has('rombel')): ?> has-error <?php endif; ?>">
+			<label for="">Rombel</label>
+			<input type="text" name="rombel" class="form-control">
+			<?php echo e($errors->first('rombel')); ?>
+
+		</div>
+
 		<div class="form-group <?php if($errors->has('kode')): ?> has-error <?php endif; ?>">
 			<label for="">Kelas</label>
 			<select name="kode" id="kode" class="form-control">
@@ -38,7 +45,7 @@
 				Simpan
 			</button>
 
-			<a href="<?php echo e(URL::to('admin/jurusan')); ?>" class="btn btn-default">
+			<a href="<?php echo e(URL::to('admin/kelas')); ?>" class="btn btn-default">
 				Kembali
 			</a>
 		</div>

@@ -40,7 +40,7 @@ p.caption-besar{
 }
 .navbar ul li a{
     color: #2c3e50;
-    font-weight: 570;
+    font-weight: 700;
 }
 .navbar ul li a:hover{
     background: #f2c81e !important;
@@ -70,4 +70,18 @@ h3.footer{
 p.footer{
     text-align: right;
     color: white;
+}
+
+.timer{
+    float: right;
+    margin-left: 5px;
+}
+.hours {
+    float: left;
+}
+.minutes {
+    float: left;
+}
+.seconds {
+    float: left;
 }

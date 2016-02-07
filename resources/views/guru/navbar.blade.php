@@ -17,7 +17,7 @@
       <br>
       <ul class="nav navbar-nav navbar-right">
          
-        <li><a href="{{URL::to('login/logout')}}">Logout</a></li>
+        <li><a href="{{URL::to('login/logout-guru')}}">Logout</a></li>
       </ul>
     </div>
   </div>
