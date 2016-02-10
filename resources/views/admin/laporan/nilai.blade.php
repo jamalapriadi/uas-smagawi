@@ -9,6 +9,9 @@
             <div class="col-lg-4">
                 <select name="kelas" id="kelas" class="form-control">
                     <option value="">--Pilih Kelas--</option>
+                    @foreach($kelas as $row)
+                        <option value="{{$row->kd_kelas}}">{{$row->kd_kelas}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -18,6 +21,9 @@
             <div class="col-lg-4">
                 <select name="mapel" id="mapel" class="form-control">
                     <option value="">--Pilih Mata Pelajaran--</option>
+                    @foreach($mapel as $map)
+                        <option value="{{$map->kd_mapel}}">{{$map->nm_mapel}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

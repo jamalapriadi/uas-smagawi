@@ -32,6 +32,8 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 	Route::get('/','AdminController@index');
+	Route::get('profile','AdminController@profile');
+	Route::post('update-profile','AdminController@update_profile');
 	Route::resource('jurusan','JurusanController');
 	Route::resource('kelas','KelasController');
 	Route::resource('mapel','MapelController');
@@ -69,15 +71,33 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 	Route::post('hapus-peserta','PesertaController@hapus_peserta');
 
 	Route::group(['prefix'=>'laporan'],function(){
+		//siswa
 		Route::get('siswa','LapController@siswa');
+		Route::post('preview-siswa','LapController@preview_siswa');
+		Route::get('cetak-siswa','LapController@cetak_siswa');
+
 		Route::get('export-siswa','LapController@export_siswa');
 		Route::get('preview-cetak-siswa','LapController@preview_cetak_siswa');
 		Route::get('export-siswa-pdf','LapController@export_siswa_pdf');
 
+		//guru
+		Route::get('guru','LapController@guru');
+		Route::get('cetak-guru','LapController@cetak_guru');
+
 		//nilai
 		Route::get('nilai','LapController@nilai');
 		Route::post('preview-nilai','LapController@preview_nilai');
+		Route::get('cetak-nilai','LapController@cetak_nilai');
 		Route::get('detail-nilai/{id}','LapController@detail_nilai');
+
+		//peserta
+		Route::get('peserta','LapController@peserta');
+		Route::post('preview-peserta','LapController@preview_peserta');
+		Route::get('cetak-peserta','LapController@cetak_peserta');
+
+		//jadwal
+		Route::get('jadwal','LapController@jadwal');
+		Route::get('cetak-jadwal','LapController@cetak_jadwal');
 	});
 });
 

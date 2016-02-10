@@ -1,39 +1,20 @@
-@extends('admin.laporan.template')
-
-@section('cetak')
-    <a href="{{URL::to('admin/laporan/cetak-nilai?type=pdf&kelas='.$kelas.'&mapel='.$mapel)}}" class="btn btn-primary" target="new target">
-        <i class="glyphicon glyphicon-print"></i>
-        Export PDF
-    </a>
-
-    <a href="{{URL::to('admin/laporan/cetak-nilai?type=excel&kelas='.$kelas.'&mapel='.$mapel)}}" class="btn btn-success" target="new target">
-        <i class="glyphicon glyphicon-print"></i>
-        Export Excel
-    </a>
-
-    <a href="{{URL::to('admin/laporan/nilai')}}" class="btn btn-default">
-        Kembali
-    </a>
-@stop
-
+@extends('admin.laporan.template-pdf')
 
 @section('content')
-    <legend>Data Nilai</legend>
-
-    <table class="table table-striped">
-        <thead>
+    <h3>Laporan Data Nilai</h3>
+    <hr>
+    <table class="gridtable" style="width:100%;">
             <tr>
-                <th>Kelas</th>
-                <th> : {{$kelas}}</th>
+                <td>Kelas</td>
+                <td> : {{$kelas}}</td>
             </tr>
             <tr>
-                <th>Mata Pelajaran</th>
-                <th> : {{$mapel}}</th>
+                <td>Mata Pelajaran</td>
+                <td> : {{$mapel}}</td>
             </tr>
-        </thead>
     </table>
-
-    <table class="table table-bordered">
+    <br><br>
+    <table class="gridtable">
         <thead>
             <tr>
                 <th>No.</th>

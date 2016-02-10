@@ -10,15 +10,7 @@
     <nav class="navbar navbar-default" style="padding-top:5px;padding-bottom:5px;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="btn btn-primary" href="#">
-                    <i class="glyphicon glyphicon-export"></i>
-                    Export PDF
-                </a>
-
-                <a class="btn btn-success" href="#">
-                    <i class="glyphicon glyphicon-export"></i>
-                    Export Excel
-                </a>
+                <?php echo $__env->yieldContent('cetak'); ?>
             </div>
         </div>
     </nav>

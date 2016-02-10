@@ -1,16 +1,16 @@
 @extends('admin.template')
 
 @section('content')
-    <legend>Laporan Data Siswa</legend>
+    <legend>Laporan Peserta Ujian</legend>
 
-    {{Form::open(['url'=>'admin/laporan/preview-siswa','method'=>'post','class'=>'form-horizontal'])}}
+    {{Form::open(array('url'=>'admin/laporan/preview-peserta','method'=>'post','class'=>'form-horizontal'))}}
         <div class="form-group">
-            <label for="" class="col-lg-2 control-label">Kelas</label>
+            <label for="" class="col-lg-2 control-label">Ruang Ujian</label>
             <div class="col-lg-4">
-                <select name="kelas" id="kelas" class="form-control">
-                    <option value="">--Pilih Kelas--</option>
-                    @foreach($kelas as $row)
-                        <option value="{{$row->kd_kelas}}">{{$row->kd_kelas}}</option>
+                <select name="ruang" id="ruang" class="form-control">
+                    <option value="">--Pilih Ruang Ujian--</option>
+                    @foreach($ruang as $row)
+                        <option value="{{$row->id_ruang}}">{{$row->nama_ruang}}</option>
                     @endforeach
                 </select>
             </div>

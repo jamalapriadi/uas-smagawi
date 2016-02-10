@@ -1,0 +1,6 @@
+select siswa.nis,siswa.no_peserta,siswa.kd_kelas,siswa.nama,
+soal_siswa.id_soal,soal_siswa.id_detail_soal,soal_siswa.id_jadwal,soal_siswa.id_detail_jadwal,soal_siswa.soal_ke,
+soal_siswa.jawaban,soal_siswa.status,soal_siswa.selesai,soal_siswa.benar,
+soal.kd_mapel from siswa
+left join soal_siswa on soal_siswa.nis=siswa.nis
+left join soal on soal_siswa.id_soal=soal.id

@@ -55,6 +55,8 @@ class SiswaController extends Controller
                 ->withInput()
                 ->withErrors($validasi);
         }else{
+            $pass=str_random(6);
+            
             $siswa=new Siswa;
             $siswa->nis=$request->input('nis');
             $siswa->nama=$request->input('nama');

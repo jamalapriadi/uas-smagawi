@@ -1,15 +1,15 @@
 <?php $__env->startSection('content'); ?>
-    <legend>Laporan Data Siswa</legend>
+    <legend>Laporan Peserta Ujian</legend>
 
-    <?php echo e(Form::open(['url'=>'admin/laporan/preview-siswa','method'=>'post','class'=>'form-horizontal'])); ?>
+    <?php echo e(Form::open(array('url'=>'admin/laporan/preview-peserta','method'=>'post','class'=>'form-horizontal'))); ?>
 
         <div class="form-group">
-            <label for="" class="col-lg-2 control-label">Kelas</label>
+            <label for="" class="col-lg-2 control-label">Ruang Ujian</label>
             <div class="col-lg-4">
-                <select name="kelas" id="kelas" class="form-control">
-                    <option value="">--Pilih Kelas--</option>
-                    <?php foreach($kelas as $row): ?>
-                        <option value="<?php echo e($row->kd_kelas); ?>"><?php echo e($row->kd_kelas); ?></option>
+                <select name="ruang" id="ruang" class="form-control">
+                    <option value="">--Pilih Ruang Ujian--</option>
+                    <?php foreach($ruang as $row): ?>
+                        <option value="<?php echo e($row->id_ruang); ?>"><?php echo e($row->nama_ruang); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
