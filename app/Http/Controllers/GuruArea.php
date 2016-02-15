@@ -74,7 +74,8 @@ class GuruArea extends Controller{
 			$detail->save();
 
 			Session::flash('pesan',"Soal Berhasil ditambah");
-			return Redirect::to('guru');
+			//return Redirect::to('guru');
+			return View('guru.sukses');
 		}
 	}
 
@@ -124,7 +125,8 @@ class GuruArea extends Controller{
 			$detail->save();
 
 			Session::flash('pesan',"Soal Berhasil diubah");
-			return Redirect::to('guru');
+			//return Redirect::to('guru');
+			return View('guru.sukses');
 		}
 	}
 

@@ -13,6 +13,7 @@
         <div class="form-group <?php if($errors->has('nama')): ?> has-error <?php endif; ?>">
             <label for="" class="col-lg-2 control-label">Nama</label>
             <div class="col-lg-4">
+                <input type="hidden" name="id" value="<?php echo e($admin->id); ?>">
                 <input type="text" name="nama" value="<?php echo e($admin->name); ?>" class="form-control">
                 <?php echo e($errors->first('nama')); ?>
 

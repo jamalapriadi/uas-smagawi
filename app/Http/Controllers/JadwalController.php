@@ -153,6 +153,16 @@ class JadwalController extends Controller
     {
         $jadwal=Jadwal::find($id);
 
+        //cek detail_jadwal
+        $detail=DB::table('detail_jadwal')
+            ->where('id_jadwal',$id)
+            ->count();
+
+        if($detail>0){
+            Session::flash('pesan',"Data tidak dapat dihapus karena ada data jadwal yang masih menggunakan kelas ini");
+            return Redirect::back();   
+        }
+
         $jadwal->delete();
 
         Session::flash('pesan',"Data Berhasil dihapus");

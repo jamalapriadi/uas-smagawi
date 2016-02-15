@@ -55,6 +55,7 @@
             <li><a href="{{URL::to('admin/laporan/jadwal')}}">Jadwal Ujian</a></li>
             <li><a href="{{URL::to('admin/laporan/peserta')}}">Peserta Ujian</a></li>
             <li><a href="{{URL::to('admin/laporan/nilai')}}">Nilai Ujian</a></li>
+            <li><a href="{{URL::to('admin/laporan/kartu-peserta')}}">Kartu Peserta</a></li>
           </ul>
         </li>
         

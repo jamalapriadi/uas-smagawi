@@ -3,18 +3,29 @@
 @section('content')
 	<legend>Tambah Jurusan</legend>
 
+
+	@if(Session::has('pesan'))
+		<div class="alert alert-danger">
+			{{Session::get('pesan')}}
+		</div>
+	@endif
+
 	{{Form::open(array('url'=>'admin/kelas','method'=>'post'))}}
+		<!--
 		<div class="form-group @if($errors->has('rombel')) has-error @endif">
 			<label for="">Rombel</label>
 			<input type="text" name="rombel" class="form-control">
 			{{$errors->first('rombel')}}
 		</div>
+		-->
 
 		<div class="form-group @if($errors->has('kode')) has-error @endif">
 			<label for="">Kelas</label>
 			<select name="kode" id="kode" class="form-control">
 				<option value="">--Pilih Kelas--</option>
-				<option value="x">X</option>
+				<option value="X">X</option>
+				<option value="XI">XI</option>
+				<option value="XII">XII</option>
 			</select>
 			{{$errors->first('kode')}}
 		</div>
@@ -36,7 +47,7 @@
 			{{$errors->first('sub')}}
 		</div>
 
-		<div class="form-group">
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>
 				Simpan

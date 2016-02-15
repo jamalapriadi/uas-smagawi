@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Jurusan;
 use App\Models\Kelas;
+use App\Models\Siswa;
 
-use Validator,Redirect,Input,Session;
+use Validator,Redirect,Input,Session,DB;
 
 class KelasController extends Controller
 {
@@ -54,8 +55,17 @@ class KelasController extends Controller
                 ->withInput()
                 ->WithErrors($validasi);
         }else{
+            $kode=$request->input('kode').'-'.$request->input('jurusan').'-'.$request->input('sub');
+
+            $cek=Kelas::where('kd_kelas',$kode)->count();
+
+            if($cek>0){
+                Session::flash('pesan',"Kode kelas sudah digunakan");
+                return Redirect::back();
+            }
+
             $kelas=new Kelas;
-            $kelas->kd_kelas=$request->input('rombel');
+            $kelas->kd_kelas=$request->input('kode').'-'.$request->input('jurusan').'-'.$request->input('sub');
             $kelas->kelas=$request->input('kode');
             $kelas->kode_jurusan=$request->input('jurusan');
             $kelas->sub_kelas=$request->input('sub');
@@ -111,7 +121,7 @@ class KelasController extends Controller
                 ->withInput()
                 ->WithErrors($validasi);
         }else{
-            $kelas->kd_kelas=$request->input('rombel');
+            //$kelas->kd_kelas=$request->input('kode').'-'.$request->input('jurusan').'-'.$request->input('sub');
             $kelas->kelas=$request->input('kode');
             $kelas->kode_jurusan=$request->input('jurusan');
             $kelas->sub_kelas=$request->input('sub');
@@ -131,6 +141,23 @@ class KelasController extends Controller
     public function destroy($id)
     {
         $kelas=Kelas::find($id);
+
+        //cek siswa dengan kelas ini
+        $siswa=Siswa::where('kd_kelas',$id)->count();
+        if($siswa>0){
+            Session::flash('pesan',"Data tidak dapat dihapus karena ada siswa yang masih menggunakan kelas ini");
+            return Redirect::back();
+        }
+
+        //cek detail_jadwal
+        $detail=DB::table('detail_jadwal')
+            ->where('kd_kelas',$id)
+            ->count();
+
+        if($detail>0){
+            Session::flash('pesan',"Data tidak dapat dihapus karena ada data jadwal yang masih menggunakan kelas ini");
+            return Redirect::back();   
+        }
 
         $kelas->delete();
 

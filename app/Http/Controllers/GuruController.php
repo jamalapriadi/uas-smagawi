@@ -11,7 +11,7 @@ use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Jurusan;
 use App\Models\Soal;
-use Redirect,Validator,Session,Hash;
+use Redirect,Validator,Session,Hash,DB;
 
 class GuruController extends Controller
 {
@@ -150,6 +150,16 @@ class GuruController extends Controller
     public function destroy($id)
     {
         $guru=Guru::find($id);
+
+        //cek detail_jadwal
+        $detail=DB::table('soal')
+            ->where('author',$id)
+            ->count();
+
+        if($detail>0){
+            Session::flash('pesan',"Data Guru tidak dapat dihapus");
+            return Redirect::back();   
+        }
 
         $guru->delete();
 

@@ -23,6 +23,7 @@
                 <th>No. Peserta</th>
                 <th>Nama</th>
                 <th>Kelas</th>
+                <th>Password</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
                     <td>{{$row->siswa->no_peserta}}</td>
                     <td>{{$row->siswa->nama}}</td>
                     <td>{{$row->siswa->kd_kelas}}</td>
+                    <td>{{$row->siswa->password_asli}}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -9,7 +9,7 @@
             <th>NISN</th>
             <th>Nama</th>
             <th>
-                
+                <input type="checkbox" id="semua"> Pilih Semua
             </th>
         </tr>
     </thead>
@@ -22,7 +22,7 @@
                 <td><?php echo e($row->nis); ?></td>
                 <td><?php echo e($row->nama); ?></td>
                 <td>
-                    <input type="checkbox" name="nis[]" value="<?php echo e($row->nis); ?>">
+                    <input type="checkbox" class="checkbox" name="nis[]" value="<?php echo e($row->nis); ?>">
                 </td>
             </tr>
         <?php endforeach; ?>

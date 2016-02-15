@@ -55,7 +55,7 @@ class SiswaController extends Controller
                 ->withInput()
                 ->withErrors($validasi);
         }else{
-            $pass=str_random(6);
+            $pass=mt_rand().'@';
             
             $siswa=new Siswa;
             $siswa->nis=$request->input('nis');
@@ -231,7 +231,7 @@ class SiswaController extends Controller
             $cek=Siswa::where('nis',$row['nisn'])->count();
 
             if($cek>0) continue;
-            $pass=str_random(6);
+            $pass=mt_rand().'@';
 
             $data=array(
                 'nis'=>$row['nisn'],

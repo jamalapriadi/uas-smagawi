@@ -8,7 +8,7 @@
             <th>NISN</th>
             <th>Nama</th>
             <th>
-                
+                <input type="checkbox" id="semua"> Pilih Semua
             </th>
         </tr>
     </thead>
@@ -21,7 +21,7 @@
                 <td>{{$row->nis}}</td>
                 <td>{{$row->nama}}</td>
                 <td>
-                    <input type="checkbox" name="nis[]" value="{{$row->nis}}">
+                    <input type="checkbox" class="checkbox" name="nis[]" value="{{$row->nis}}">
                 </td>
             </tr>
         @endforeach

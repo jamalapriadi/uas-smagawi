@@ -98,6 +98,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 		//jadwal
 		Route::get('jadwal','LapController@jadwal');
 		Route::get('cetak-jadwal','LapController@cetak_jadwal');
+
+		//kartu peserta
+		Route::get('kartu-peserta','LapController@kartu_peserta');
+		Route::post('preview-kartu-peserta','LapController@preview_kartu_peserta');
+		Route::get('cetak-kartu-peserta','LapController@cetak_kartu_peserta');
 	});
 });
 
@@ -160,4 +165,7 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('siswa','ApiController@siswa');
 	Route::get('tes','ApiController@tes');
 	Route::get('acak','ApiController@acak');
+	Route::get('random',function(){
+		echo mt_rand().'@';
+	});
 });

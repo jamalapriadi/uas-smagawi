@@ -21,6 +21,7 @@
                 <th>No. Peserta</th>
                 <th>Nama</th>
                 <th>Kelas</th>
+                <th>Password</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                     <td><?php echo e($row->siswa->no_peserta); ?></td>
                     <td><?php echo e($row->siswa->nama); ?></td>
                     <td><?php echo e($row->siswa->kd_kelas); ?></td>
+                    <td><?php echo e($row->siswa->password_asli); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

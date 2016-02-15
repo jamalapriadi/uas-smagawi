@@ -13,7 +13,7 @@
         <div class="form-group @if($errors->has('nama')) has-error @endif">
             <label for="" class="col-lg-2 control-label">Nama</label>
             <div class="col-lg-4">
-                <input type="text" name="id" value="{{$admin->id}}">
+                <input type="hidden" name="id" value="{{$admin->id}}">
                 <input type="text" name="nama" value="{{$admin->name}}" class="form-control">
                 {{$errors->first('nama')}}
             </div>

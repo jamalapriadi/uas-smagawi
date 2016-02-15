@@ -3,11 +3,22 @@
 
 	<?php echo Form::model($kelas,array('url'=>route('admin.kelas.update',['kelas'=>$kelas->kd_kelas]),'method'=>'put')); ?>
 
+		<!--
+		<div class="form-group <?php if($errors->has('rombel')): ?> has-error <?php endif; ?>">
+			<label for="">Rombel</label>
+			<input type="text" name="rombel" value="<?php echo e($kelas->kd_kelas); ?>" class="form-control">
+			<?php echo e($errors->first('rombel')); ?>
+
+		</div>
+		-->
+
 		<div class="form-group <?php if($errors->has('kode')): ?> has-error <?php endif; ?>">
 			<label for="">Kelas</label>
 			<select name="kode" id="kode" class="form-control">
 				<option value="">--Pilih Kelas--</option>
-				<option value="x" <?php if($kelas->kelas=='x'): ?> selected='selected' <?php endif; ?>>X</option>
+				<option value="X" <?php if($kelas->kelas=='X'): ?> selected='selected' <?php endif; ?>>X</option>
+				<option value="XI" <?php if($kelas->kelas=='XI'): ?> selected='selected' <?php endif; ?>>XI</option>
+				<option value="XII" <?php if($kelas->kelas=='XII'): ?> selected='selected' <?php endif; ?>>XII</option>
 			</select>
 			<?php echo e($errors->first('kode')); ?>
 
@@ -32,13 +43,13 @@
 
 		</div>
 
-		<div class="form-group">
+		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="fa fa-save"></i>
 				Simpan
 			</button>
 
-			<a href="<?php echo e(URL::to('admin/jurusan')); ?>" class="btn btn-default">
+			<a href="<?php echo e(URL::to('admin/kelas')); ?>" class="btn btn-default">
 				Kembali
 			</a>
 		</div>

@@ -1,0 +1,4 @@
+- memunculkan password siswa pada login admin (random 6 angka dengan digit akhir "@")
+- Menghapus data jurusan masih eror
+- Belum ada menu tambah kelas (XII)
+- Password Berupa angka

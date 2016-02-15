@@ -73,7 +73,12 @@
                         $("#tampil").html("<div class='alert alert-danger'>Data tidak dapat ditampilkan</div>");
                     }
                 })
-            })
+            });
+
+            
+            $(document).on('change',"#semua",function(){
+                $(".checkbox").prop('checked', $(this).prop("checked"));
+            });
         })
     </script>
 <?php $__env->stopSection(); ?>

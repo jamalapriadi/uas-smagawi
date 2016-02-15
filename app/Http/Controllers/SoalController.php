@@ -11,7 +11,7 @@ use App\Models\Soal;
 use App\Models\Jurusan;
 use App\Models\Mapel;
 use App\Models\Detail;
-use Redirect,Validator,Session;
+use Redirect,Validator,Session,DB;
 
 class SoalController extends Controller
 {
@@ -138,6 +138,15 @@ class SoalController extends Controller
     public function destroy($id)
     {
         $soal=Soal::find($id);
+
+        $detail=DB::table('detail_soal')
+            ->where('id_soal',$id)
+            ->count();
+
+        if($detail>0){
+            Session::flash('pesan',"Data Soal tidak dapat dihapus");
+            return Redirect::back();   
+        }
 
         $soal->delete();
 

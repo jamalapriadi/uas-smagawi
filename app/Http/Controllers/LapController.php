@@ -297,16 +297,18 @@ class LapController extends Controller{
                                 'NISN',
                                 'No. Peserta',
                                 'Nama',
-                                'Kelas'
+                                'Kelas',
+                                'Password'
                             )
                         );
 
                         foreach($peserta as $s){
                             $sheet->row(++$row,array(
                                 $s->nis,
-                                $s->no_peserta,
-                                $s->nama,
-                                $s->kd_kelas
+                                $s->siswa->no_peserta,
+                                $s->siswa->nama,
+                                $s->siswa->kd_kelas,
+                                $s->siswa->password_asli
                             ));
                         }
                     });
@@ -368,5 +370,39 @@ class LapController extends Controller{
                 # code...
                 break;
         }
+    }
+
+    public function kartu_peserta(){
+        $kelas=Kelas::all();
+        return View('admin.laporan.kartu_peserta')
+            ->with('kelas',$kelas);
+    }
+
+    function preview_kartu_peserta(Request $request){
+        $kelas=$request->input('kelas');
+
+        if($kelas=='semua'){
+            $siswa=Siswa::all();
+        }else{
+            $siswa=Siswa::where('kd_kelas',$kelas)->get();
+        }
+
+        return View('admin.laporan.preview_kartu_peserta')
+            ->with('siswa',$siswa)
+            ->with('kelas',$kelas);
+    }
+
+    function cetak_kartu_peserta(Request $request){
+        $type=$request->input('type');
+        $kelas=$data['kelas']=$request->input('kelas');
+
+        if($kelas=='semua'){
+            $data['siswa']=Siswa::all();
+        }else{
+            $data['siswa']=Siswa::where('kd_kelas',$kelas)->get();
+        }
+
+        $pdf = PDF::loadView('admin.laporan.cetak-kartu-peserta', $data)->setPaper('f4');
+        return $pdf->stream();
     }
 }
