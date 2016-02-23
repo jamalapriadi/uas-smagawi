@@ -2,6 +2,7 @@
 
 <input type="hidden" name="kelas" value="<?php echo e($kelas); ?>" class="form-control">
 <input type="hidden" name="ruang" value="<?php echo e($ruang); ?>" class="form-control">
+<input type="hidden" name="sesi" value="<?php echo e($sesi); ?>" class="form-control">
 <table class="table table-striped">
     <thead>
         <tr>

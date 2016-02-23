@@ -1,7 +1,9 @@
 @extends('admin.template')
 
 @section('content')
-    <legend>Atur Peserta</legend>
+    <legend>
+        <a href="{{URL::to('admin/peserta-ujian')}}" class="btn btn-default">Kembali</a>
+        Atur Peserta</legend>
 
     <table class="table table-striped">
         <thead>
@@ -41,6 +43,7 @@
                 <th>NIS</th>
                 <th>Nama</th>
                 <th>Kelas</th>
+                <th>Sesi</th>
                 <th></th>
             </tr>
         </thead>
@@ -54,6 +57,7 @@
                     <td>{{$row->nis}}</td>
                     <td>{{$row->siswa->nama}}</td>
                     <td>{{$row->siswa->kd_kelas}}</td>
+                    <td>{{$row->sesi}}</td>
                     <td>
                         <a href="#" kode="{{$row->id}}" class="btn btn-danger hapus">
                             <i class="glyphicon glyphicon-trash"></i>

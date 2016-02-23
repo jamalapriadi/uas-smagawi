@@ -26,6 +26,10 @@
 			<th>Jam</th>
 			<th> : {{$jadwal->jam}} s.d {{$jadwal->selesai}}</th>
 		</tr>
+		<tr>
+			<th>Sesi</th>
+			<th> : {{$jadwal->sesi}}</th>
+		</tr>
 	</table>
 
 	<a href="{{URL::to('admin/tambah-ruang/'.$jadwal->id_jadwal)}}" class="btn btn-primary">

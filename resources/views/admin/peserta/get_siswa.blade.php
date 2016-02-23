@@ -1,6 +1,7 @@
 {{Form::open(['url'=>'admin/simpan-peserta','method'=>'post'])}}
 <input type="hidden" name="kelas" value="{{$kelas}}" class="form-control">
 <input type="hidden" name="ruang" value="{{$ruang}}" class="form-control">
+<input type="hidden" name="sesi" value="{{$sesi}}" class="form-control">
 <table class="table table-striped">
     <thead>
         <tr>

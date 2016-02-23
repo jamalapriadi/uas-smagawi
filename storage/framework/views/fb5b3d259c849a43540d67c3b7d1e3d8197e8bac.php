@@ -24,6 +24,7 @@
 				<th>Tanggal</th>
 				<th>Jam</th>
 				<th>Lama Ujian ( Menit )</th>
+				<th>Sesi</th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -40,6 +41,7 @@
 					<td><?php echo e($row->tgl_ujian); ?></td>
 					<td><?php echo e($row->jam); ?> s/d <?php echo e($row->selesai); ?></td>
 					<td><?php echo e($row->waktu_ujian); ?></td>
+					<td><?php echo e($row->sesi); ?></td>
 					<td>
 						<a href="<?php echo e(URL::to('admin/jadwal/'.$row->id_jadwal)); ?>" class="btn btn-success">
 							<i class="glyphicon glyphicon-list-alt"></i>

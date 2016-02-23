@@ -25,6 +25,7 @@
 				<th>Tanggal</th>
 				<th>Jam</th>
 				<th>Lama Ujian ( Menit )</th>
+				<th>Sesi</th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -41,6 +42,7 @@
 					<td>{{$row->tgl_ujian}}</td>
 					<td>{{$row->jam}} s/d {{$row->selesai}}</td>
 					<td>{{$row->waktu_ujian}}</td>
+					<td>{{$row->sesi}}</td>
 					<td>
 						<a href="{{URL::to('admin/jadwal/'.$row->id_jadwal)}}" class="btn btn-success">
 							<i class="glyphicon glyphicon-list-alt"></i>

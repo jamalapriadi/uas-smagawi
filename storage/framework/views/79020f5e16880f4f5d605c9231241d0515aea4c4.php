@@ -1,5 +1,7 @@
 <?php $__env->startSection('content'); ?>
-    <legend>Atur Peserta</legend>
+    <legend>
+        <a href="<?php echo e(URL::to('admin/peserta-ujian')); ?>" class="btn btn-default">Kembali</a>
+        Atur Peserta</legend>
 
     <table class="table table-striped">
         <thead>
@@ -40,6 +42,7 @@
                 <th>NIS</th>
                 <th>Nama</th>
                 <th>Kelas</th>
+                <th>Sesi</th>
                 <th></th>
             </tr>
         </thead>
@@ -53,6 +56,7 @@
                     <td><?php echo e($row->nis); ?></td>
                     <td><?php echo e($row->siswa->nama); ?></td>
                     <td><?php echo e($row->siswa->kd_kelas); ?></td>
+                    <td><?php echo e($row->sesi); ?></td>
                     <td>
                         <a href="#" kode="<?php echo e($row->id); ?>" class="btn btn-danger hapus">
                             <i class="glyphicon glyphicon-trash"></i>

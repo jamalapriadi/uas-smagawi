@@ -60,6 +60,18 @@
 
 		</div>
 
+		<div class="form-group <?php if($errors->has('sesi')): ?> has-error <?php endif; ?>">
+			<label for="">Sesi</label>
+			<select name="sesi" id="sesi" class="form-control">
+				<option value="">--Pilih Sesi--</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>
+			<?php echo e($errors->first('sesi')); ?>
+
+		</div>
+
 		<div class="form-group well">
 			<button class="btn btn-primary">
 				<i class="glyphicon glyphicon-saved"></i>

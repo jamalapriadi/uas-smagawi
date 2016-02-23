@@ -18,7 +18,8 @@ class Jadwal extends Model{
 		'tanggal'=>'required',
 		'jam'=>'required',
 		'lama'=>'required',
-		'selesai'=>'required'
+		'selesai'=>'required',
+		'sesi'=>'required'
 	];
 
 	public static $pesan=[
@@ -26,7 +27,8 @@ class Jadwal extends Model{
 		'tanggal.required'=>'Tanggal harus diisi',
 		'jam.required'=>'Jam Harus diisi',
 		'lama.required'=>'Lama Ujian harus diisi',
-		'selesai.required'=>'Jam Selesai harus diisi'
+		'selesai.required'=>'Jam Selesai harus diisi',
+		'sesi.required'=>'Sesi harus diisi'
 	];
 
 	public function detail(){

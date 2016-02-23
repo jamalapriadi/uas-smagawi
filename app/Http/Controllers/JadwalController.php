@@ -71,6 +71,7 @@ class JadwalController extends Controller
             $jadwal->jam=date('H:i:s',strtotime($request->input('jam')));
             $jadwal->selesai=date('H:i:s',strtotime($request->input('selesai')));
             $jadwal->waktu_ujian=$request->input('lama');
+            $jadwal->sesi=$request->input('sesi');
             $jadwal->save();
 
             Session::flash('pesan',"Data Berhasil disimpan");
@@ -136,6 +137,7 @@ class JadwalController extends Controller
             $jadwal->jam=date('H:i:s',strtotime($request->input('jam')));
             $jadwal->selesai=date('H:i:s',strtotime($request->input('selesai')));
             $jadwal->waktu_ujian=$request->input('lama');
+            $jadwal->sesi=$request->input('sesi');
             $jadwal->save();
 
             Session::flash('pesan',"Data Berhasil disimpan");

@@ -42,6 +42,7 @@ class PesertaController extends Controller{
     public function simpan_peserta(Request $request){
         $kelas=$request->input('kelas');
         $ruang=$request->input('ruang');
+        $sesi=$request->input('sesi');
 
         $kuota=Ruang::find($ruang);
 
@@ -78,6 +79,7 @@ class PesertaController extends Controller{
         if($request->ajax()){
             $kelas=$request->input('kelas');
             $ruang=$request->input('ruang');
+            $sesi=$request->input('sesi');
 
             /*
             $siswa=Siswa::whereNotIn('siswa.nis',function($query){
@@ -89,14 +91,15 @@ class PesertaController extends Controller{
             */
             $siswa=DB::select("select * from siswa where
                 nis not in(select peserta_ujian.nis from peserta_ujian where
-                    peserta_ujian.nis=siswa.nis)
+                    peserta_ujian.nis=siswa.nis and peserta_ujian.sesi='$sesi')
                     and kd_kelas='$kelas'");
 
             if(count($siswa)>0){
                 return View('admin.peserta.get_siswa')
                     ->with('siswa',$siswa)
                     ->with('kelas',$kelas)
-                    ->with('ruang',$ruang);
+                    ->with('ruang',$ruang)
+                    ->with('sesi',$sesi);
             }else{
                 echo "<div class='alert alert-info'>Data Tidak Ditemukan</div>";
             }

@@ -25,6 +25,10 @@
 			<th>Jam</th>
 			<th> : <?php echo e($jadwal->jam); ?> s.d <?php echo e($jadwal->selesai); ?></th>
 		</tr>
+		<tr>
+			<th>Sesi</th>
+			<th> : <?php echo e($jadwal->sesi); ?></th>
+		</tr>
 	</table>
 
 	<a href="<?php echo e(URL::to('admin/tambah-ruang/'.$jadwal->id_jadwal)); ?>" class="btn btn-primary">
