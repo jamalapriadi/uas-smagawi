@@ -69,6 +69,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.admin'],function(){
 	Route::post('simpan-peserta','PesertaController@simpan_peserta');
 	Route::get('get-siswa','PesertaController@get_siswa');
 	Route::post('hapus-peserta','PesertaController@hapus_peserta');
+	Route::post('delete-atur-peserta','PesertaController@delete_atur_peserta');
 
 	Route::group(['prefix'=>'laporan'],function(){
 		//siswa

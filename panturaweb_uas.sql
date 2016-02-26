@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2016 at 08:36 
+-- Generation Time: Feb 26, 2016 at 02:11 
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Sugiono Pamungkas', 'jamal.apriadi@gmail.com', '$2y$10$luQOeq52HNf6egBNxTZl2ejOi0HKIioXnPA1Udav.VQzQpq7V1gsi', 'PQehWUALHr5Nz1qrM9TJ42VoAdF3bvykWavPqe1MvCt4NvjwzyGG5OTHjn4w', '2016-02-23 04:46:18', '2016-02-23 04:46:18');
+(1, 'Sugiono Pamungkas', 'jamal.apriadi@gmail.com', '$2y$10$luQOeq52HNf6egBNxTZl2ejOi0HKIioXnPA1Udav.VQzQpq7V1gsi', 'B4UhclbnzsBVOvRry53Ech6RMbh4WWEhTTgfjqIDjLzZ1R62WnaRAJ1mqCsC', '2016-02-23 08:17:23', '2016-02-23 08:17:23');
 
 -- --------------------------------------------------------
 
@@ -306,45 +306,7 @@ CREATE TABLE IF NOT EXISTS `peserta_ujian` (
   KEY `id_jadwal` (`nis`,`id_ruang`),
   KEY `nisn` (`nis`),
   KEY `id_ruang` (`id_ruang`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
-
---
--- Dumping data for table `peserta_ujian`
---
-
-INSERT INTO `peserta_ujian` (`id`, `no_peserta`, `nis`, `id_ruang`, `no_meja`, `sesi`) VALUES
-(1, NULL, '9967953118', 1, 1, '1'),
-(2, NULL, '9970348295', 1, 1, '1'),
-(3, NULL, '9972098963', 1, 1, '1'),
-(4, NULL, '9976753640', 1, 1, '1'),
-(5, NULL, '9976757264', 1, 1, '1'),
-(6, NULL, '9976791170', 1, 1, '1'),
-(7, NULL, '9977159011', 1, 1, '1'),
-(8, NULL, '9977450432', 1, 1, '1'),
-(9, NULL, '9977593384', 1, 1, '1'),
-(10, NULL, '9980777535', 1, 1, '1'),
-(11, NULL, '9982772361', 1, 1, '1'),
-(12, NULL, '9982772396', 1, 1, '1'),
-(13, NULL, '9983111955', 1, 1, '1'),
-(14, NULL, '9986616907', 1, 1, '1'),
-(15, NULL, '9986617721', 1, 1, '1'),
-(16, NULL, '9986617731', 1, 1, '1'),
-(17, NULL, '9986773768', 1, 1, '1'),
-(18, NULL, '9986976233', 1, 1, '1'),
-(19, NULL, '9987033583', 1, 1, '1'),
-(20, NULL, '9987256382', 1, 1, '1'),
-(21, NULL, '9987295202', 1, 1, '1'),
-(22, NULL, '9987312863', 1, 1, '1'),
-(23, NULL, '9987358383', 1, 1, '1'),
-(24, NULL, '9987475175', 1, 1, '1'),
-(25, NULL, '9987512946', 1, 1, '1'),
-(26, NULL, '9987839055', 1, 1, '1'),
-(27, NULL, '9987895650', 1, 1, '1'),
-(28, NULL, '9988755362', 1, 1, '1'),
-(29, NULL, '9993166663', 1, 1, '1'),
-(30, NULL, '9994972818', 1, 1, '1'),
-(31, NULL, '9996910073', 1, 1, '1'),
-(32, NULL, '9997631526', 1, 1, '1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -675,6 +637,7 @@ CREATE TABLE IF NOT EXISTS `view_detail_jadwal` (
 ,`tgl_ujian` date
 ,`jam` time
 ,`selesai` time
+,`sesi` enum('1','2','3')
 );
 -- --------------------------------------------------------
 
@@ -725,7 +688,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_detail_jadwal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_detail_jadwal` AS select `a`.`id` AS `id`,`a`.`id_jadwal` AS `id_jadwal`,`a`.`kd_kelas` AS `kd_kelas`,`a`.`jam_mulai` AS `jam_mulai`,`a`.`id_ruang` AS `id_ruang`,`a`.`status` AS `status`,`a`.`pengawas` AS `pengawas`,`a`.`token` AS `token`,`b`.`kode_jurusan` AS `kode_jurusan`,`b`.`kd_mapel` AS `kd_mapel`,`b`.`tgl_ujian` AS `tgl_ujian`,`b`.`jam` AS `jam`,`b`.`selesai` AS `selesai` from (`detail_jadwal` `a` join `jadwal` `b`) where (`a`.`id_jadwal` = `b`.`id_jadwal`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_detail_jadwal` AS select `a`.`id` AS `id`,`a`.`id_jadwal` AS `id_jadwal`,`a`.`kd_kelas` AS `kd_kelas`,`a`.`jam_mulai` AS `jam_mulai`,`a`.`id_ruang` AS `id_ruang`,`a`.`status` AS `status`,`a`.`pengawas` AS `pengawas`,`a`.`token` AS `token`,`b`.`kode_jurusan` AS `kode_jurusan`,`b`.`kd_mapel` AS `kd_mapel`,`b`.`tgl_ujian` AS `tgl_ujian`,`b`.`jam` AS `jam`,`b`.`selesai` AS `selesai`,`b`.`sesi` AS `sesi` from (`detail_jadwal` `a` join `jadwal` `b`) where (`a`.`id_jadwal` = `b`.`id_jadwal`);
 
 -- --------------------------------------------------------
 

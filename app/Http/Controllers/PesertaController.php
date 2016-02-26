@@ -115,4 +115,18 @@ class PesertaController extends Controller{
             Session::flash('pesan',"Data Peserta berhasil dihapus");
         }
     }
+
+    public function delete_atur_peserta(Request $request){
+        if($request->has('pilih')){
+            $pilih=$request->input('pilih');
+
+            foreach ($pilih as $key => $value) {
+                Peserta::find($value)->delete();
+            }
+
+            Session::flash('pesan',"Data Berhasil dihapus");
+
+        }
+        return Redirect::back();
+    }
 }

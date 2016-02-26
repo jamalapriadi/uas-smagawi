@@ -61,10 +61,12 @@ class PengawasArea extends Controller{
 		if($request->ajax()){
 			$kelas=$request->input('kelas');
 			$ruang=$request->input('ruang');
+			$sesi=$request->input('sesi');
 
 			$siswa=DB::select("select a.*,b.id_ruang from siswa a,peserta_ujian b
 				where a.nis=b.nis and a.kd_kelas='".$kelas."' 
-				and b.id_ruang='".$ruang."'");
+				and b.id_ruang='".$ruang."'
+				and b.sesi='".$sesi."'");
 
 			return View('pengawas.load_siswa')
 				->with('siswa',$siswa);

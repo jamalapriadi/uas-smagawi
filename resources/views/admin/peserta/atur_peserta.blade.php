@@ -35,7 +35,8 @@
 
     <div id="pesan"></div>
 
-    <table class="table table-striped" id="datapeserta">
+    <table class="table table-striped">
+        {{Form::open(['url'=>'admin/delete-atur-peserta','method'=>'post'])}}
         <thead>
             <tr>
                 <th>No.</th>
@@ -45,6 +46,9 @@
                 <th>Kelas</th>
                 <th>Sesi</th>
                 <th></th>
+                <th>
+                    <input type="checkbox" id="deleteall"> Pilih
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -63,9 +67,22 @@
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
+                    <td>
+                        <input type="checkbox" class="pilih" name="pilih[]" value="{{$row->id}}">
+                    </td>
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="8">
+                    @if(count($peserta)>0)
+                        <button class="btn btn-danger">Hapus Data Yang di Pilih</button>
+                    @endif
+                </td>
+            </tr>
+        </tfoot>
+        {{Form::close()}}
     </table>
 
     <!-- Modal -->
@@ -117,7 +134,12 @@
                 })
             });
 
+            $(document).on('change',"#deleteall",function(){
+                $(".pilih").prop('checked', $(this).prop("checked"));
+            });
+
             $("#datapeserta").dataTable();
+
         })
     </script>
 @stop

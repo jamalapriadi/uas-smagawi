@@ -30,29 +30,31 @@
 		</thead>
 		<tbody>
 			<?php $no=0;?>
-			@foreach($guru as $row)
-			<?php $no++;?>
-				<tr>
-					<td>{{$no}}</td>
-					<td>{{$row->nip}}</td>
-					<td>{{$row->nama}}</td>
-					<td>{{$row->mapel->nm_mapel}}</td>
-					<td>{{$row->soal->kode_jurusan}}</td>
-					<td>
-						<a href="{{URL::to('admin/guru/'.$row->nip.'/edit')}}" class="btn btn-warning">
-							<i class="glyphicon glyphicon-edit"></i>
-						</a>
-					</td>
-					<td>
-						{{Form::open(array('url'=>'admin/guru/'.$row->nip))}}
-							{{Form::hidden('_method','DELETE')}}
-							<button class="btn btn-danger">
-								<i class="glyphicon glyphicon-trash"></i>
-							</button>
-						{{Form::close()}}
-					</td>
-				</tr>
-			@endforeach
+			@if(count($guru)>0)
+				@foreach($guru as $row)
+				<?php $no++;?>
+					<tr>
+						<td>{{$no}}</td>
+						<td>{{$row->nip}}</td>
+						<td>{{$row->nama}}</td>
+						<td>{{$row->mapel->nm_mapel}}</td>
+						<td>{{$row->soal->kode_jurusan}}</td>
+						<td>
+							<a href="{{URL::to('admin/guru/'.$row->nip.'/edit')}}" class="btn btn-warning">
+								<i class="glyphicon glyphicon-edit"></i>
+							</a>
+						</td>
+						<td>
+							{{Form::open(array('url'=>'admin/guru/'.$row->nip))}}
+								{{Form::hidden('_method','DELETE')}}
+								<button class="btn btn-danger">
+									<i class="glyphicon glyphicon-trash"></i>
+								</button>
+							{{Form::close()}}
+						</td>
+					</tr>
+				@endforeach
+			@endif
 		</tbody>
 	</table>
 @stop

@@ -38,6 +38,11 @@
 							<td>Ruang Ujian</td>
 							<td> :  {{$ruang->nama_ruang}}</td>
 						</tr>
+						<tr>
+							<td>Sesi</td>
+							<input type="hidden" id="sesi" value="{{$mengawasi->sesi}}">
+							<td> :  {{$mengawasi->sesi}}</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -138,11 +143,12 @@
 			$("#pilih").click(function(){
 				var kelas=$(this).attr("kelas");
 				var ruang=$(this).attr("ruang");
+				var sesi=$("#sesi").val();
 
 				$.ajax({
 					url:"{{URL::to('pengawas/load-siswa')}}",
 					type:"GET",
-					data:"kelas="+kelas+"&ruang="+ruang,
+					data:"kelas="+kelas+"&ruang="+ruang+"&sesi="+sesi,
 					cache:false,
 					beforeSend:function(){
 						$("#loading").show();

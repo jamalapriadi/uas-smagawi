@@ -29,32 +29,34 @@
 		</thead>
 		<tbody>
 			<?php $no=0;?>
-			<?php foreach($guru as $row): ?>
-			<?php $no++;?>
-				<tr>
-					<td><?php echo e($no); ?></td>
-					<td><?php echo e($row->nip); ?></td>
-					<td><?php echo e($row->nama); ?></td>
-					<td><?php echo e($row->mapel->nm_mapel); ?></td>
-					<td><?php echo e($row->soal->kode_jurusan); ?></td>
-					<td>
-						<a href="<?php echo e(URL::to('admin/guru/'.$row->nip.'/edit')); ?>" class="btn btn-warning">
-							<i class="glyphicon glyphicon-edit"></i>
-						</a>
-					</td>
-					<td>
-						<?php echo e(Form::open(array('url'=>'admin/guru/'.$row->nip))); ?>
+			<?php if(count($guru)>0): ?>
+				<?php foreach($guru as $row): ?>
+				<?php $no++;?>
+					<tr>
+						<td><?php echo e($no); ?></td>
+						<td><?php echo e($row->nip); ?></td>
+						<td><?php echo e($row->nama); ?></td>
+						<td><?php echo e($row->mapel->nm_mapel); ?></td>
+						<td><?php echo e($row->soal->kode_jurusan); ?></td>
+						<td>
+							<a href="<?php echo e(URL::to('admin/guru/'.$row->nip.'/edit')); ?>" class="btn btn-warning">
+								<i class="glyphicon glyphicon-edit"></i>
+							</a>
+						</td>
+						<td>
+							<?php echo e(Form::open(array('url'=>'admin/guru/'.$row->nip))); ?>
 
-							<?php echo e(Form::hidden('_method','DELETE')); ?>
+								<?php echo e(Form::hidden('_method','DELETE')); ?>
 
-							<button class="btn btn-danger">
-								<i class="glyphicon glyphicon-trash"></i>
-							</button>
-						<?php echo e(Form::close()); ?>
+								<button class="btn btn-danger">
+									<i class="glyphicon glyphicon-trash"></i>
+								</button>
+							<?php echo e(Form::close()); ?>
 
-					</td>
-				</tr>
-			<?php endforeach; ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			<?php endif; ?>
 		</tbody>
 	</table>
 <?php $__env->stopSection(); ?>
